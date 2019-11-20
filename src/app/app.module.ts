@@ -9,6 +9,10 @@ import { LandingCategoriesComponent } from './landing-page/landing-categories/la
 import { LandingContentComponent } from './landing-page/landing-content/landing-content.component';
 import { LandingNavComponent } from './landing-page/landing-nav/landing-nav.component';
 import { BreakfastComponent } from './landing-page/landing-content/breakfast/breakfast.component';
+import { LunchComponent } from './landing-page/landing-content/lunch/lunch.component';
+import { DinnerComponent } from './landing-page/landing-content/dinner/dinner.component';
+import { DesertsComponent } from './landing-page/landing-content/deserts/deserts.component';
+import { CoffeeComponent } from './landing-page/landing-content/coffee/coffee.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +22,11 @@ import { BreakfastComponent } from './landing-page/landing-content/breakfast/bre
     LandingCategoriesComponent,
     LandingContentComponent,
     LandingNavComponent,
-    BreakfastComponent
+    BreakfastComponent,
+    LunchComponent,
+    DinnerComponent,
+    DesertsComponent,
+    CoffeeComponent
   ],
   imports: [
     BrowserModule,

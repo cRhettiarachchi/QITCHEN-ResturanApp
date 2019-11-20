@@ -20,3 +20,11 @@ p{
   margin-top: 1%;
   padding-left: 4%;
 }
+
+a{
+  color: black;
+}
+
+a:hover{
+  text-decoration: none;
+}

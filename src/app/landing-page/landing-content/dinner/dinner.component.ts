@@ -3,11 +3,11 @@ import {ContentModel} from '../../../models/content.model';
 import {ContentService} from '../../../services/content.service';
 
 @Component({
-  selector: 'app-breakfast',
-  templateUrl: './breakfast.component.html',
-  styleUrls: ['./breakfast.component.css']
+  selector: 'app-dinner',
+  templateUrl: './dinner.component.html',
+  styleUrls: ['./dinner.component.css']
 })
-export class BreakfastComponent implements OnInit {
+export class DinnerComponent implements OnInit {
 
   contents: ContentModel[] = [];
 
@@ -21,5 +21,4 @@ export class BreakfastComponent implements OnInit {
     // });
     // console.log(this.contents);
   }
-
 }

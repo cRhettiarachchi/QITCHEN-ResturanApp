@@ -5,3 +5,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   padding: 0;
 }
 
+a{
+  color: black;
+}
+
+a:hover{
+  color: rgba(0, 0, 0, 0.62);
+  text-decoration: none !important;
+}
