@@ -8,6 +8,7 @@ import { LandingHeadingComponent } from './landing-page/landing-heading/landing-
 import { LandingCategoriesComponent } from './landing-page/landing-categories/landing-categories.component';
 import { LandingContentComponent } from './landing-page/landing-content/landing-content.component';
 import { LandingNavComponent } from './landing-page/landing-nav/landing-nav.component';
+import { BreakfastComponent } from './landing-page/landing-content/breakfast/breakfast.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { LandingNavComponent } from './landing-page/landing-nav/landing-nav.comp
     LandingHeadingComponent,
     LandingCategoriesComponent,
     LandingContentComponent,
-    LandingNavComponent
+    LandingNavComponent,
+    BreakfastComponent
   ],
   imports: [
     BrowserModule,

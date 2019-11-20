@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {ContentModel} from '../models/content.model';
 import {Observable, Subject} from 'rxjs';
+import {ContentModel} from '../models/content.model';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +10,7 @@ export class ContentService {
   private contentSubject = new Subject<ContentModel[]>();
 
 getAllcontents() {
-  this.contents = [{
+  const values = [{
     id: '1',
     heading: 'food 1',
     desc: 'this is one of the best food available',
@@ -38,8 +38,9 @@ getAllcontents() {
       category: 'breakfast',
       img: 'assets/img/burger.jpg'
     }];
-  return this.contents;
+  this.contents = values;
   // this.contentSubject.next([...this.contents]);
+  return [...this.contents];
 }
 
 // contentAsObservable(): Observable<ContentModel[]> {
