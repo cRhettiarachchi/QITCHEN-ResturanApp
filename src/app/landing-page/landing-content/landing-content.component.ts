@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ContentService} from '../../services/content.service';
+import {ContentModel} from '../../models/content.model';
 
 @Component({
   selector: 'app-landing-content',
@@ -8,10 +9,17 @@ import {ContentService} from '../../services/content.service';
 })
 export class LandingContentComponent implements OnInit {
   /*These are the all contents variables*/
+  contents: ContentModel[] = [];
 
   constructor(private contentService: ContentService) { }
 
   ngOnInit() {
+    this.contents = this.contentService.getAllcontents();
+    // this.contentService.contentAsObservable().subscribe((content) => {
+    //   console.log('get content in component');
+    //   this.contents = content;
+    // });
+    console.log(this.contents);
   }
 
 }
