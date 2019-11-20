@@ -7,6 +7,8 @@ import {LunchComponent} from './landing-page/landing-content/lunch/lunch.compone
 import {DinnerComponent} from './landing-page/landing-content/dinner/dinner.component';
 import {DesertsComponent} from './landing-page/landing-content/deserts/deserts.component';
 import {CoffeeComponent} from './landing-page/landing-content/coffee/coffee.component';
+import {AboutUsComponent} from './about-us/about-us.component';
+import {ContactComponent} from './contact/contact.component';
 
 
 const routes: Routes = [
@@ -21,7 +23,9 @@ const routes: Routes = [
       {path: 'deserts', component: DesertsComponent},
       {path: 'coffee', component: CoffeeComponent}
     ]
-  }
+  },
+  {path: 'about-us', component: AboutUsComponent},
+  {path: 'contact', component: ContactComponent}
 ];
 
 @NgModule({

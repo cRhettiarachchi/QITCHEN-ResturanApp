@@ -13,6 +13,8 @@ import { LunchComponent } from './landing-page/landing-content/lunch/lunch.compo
 import { DinnerComponent } from './landing-page/landing-content/dinner/dinner.component';
 import { DesertsComponent } from './landing-page/landing-content/deserts/deserts.component';
 import { CoffeeComponent } from './landing-page/landing-content/coffee/coffee.component';
+import { AboutUsComponent } from './about-us/about-us.component';
+import { ContactComponent } from './contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { CoffeeComponent } from './landing-page/landing-content/coffee/coffee.co
     LunchComponent,
     DinnerComponent,
     DesertsComponent,
-    CoffeeComponent
+    CoffeeComponent,
+    AboutUsComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,

@@ -1,9 +1,16 @@
 .navigation{
   background-color: rgba(0, 0, 0, 0.95);
 }
+.navbar{
+  margin:0;
+  padding: 0;
+}
+#navbarNav{
+  margin-left: 2%;
+}
 
 .logoImg{
   width: 80px;
-  margin: 0;
-  padding: 0;
+  margin-left: 10%;
+  margin-right: 4%;
 }
