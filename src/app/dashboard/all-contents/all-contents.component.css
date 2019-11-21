@@ -26,3 +26,22 @@ img{
   font-weight: 100;
   color: #828282;
 }
+
+.right-side{
+  display: inline;
+  margin-left: 60%;
+}
+
+.right-side a{
+  display: inline;
+  margin-left: 1%;
+}
+
+.icons{
+  width: 3%;
+  fill: #828282;
+}
+
+.icons:hover{
+  fill: black;
+}
