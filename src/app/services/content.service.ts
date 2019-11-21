@@ -8,6 +8,7 @@ import {ContentModel} from '../models/content.model';
 export class ContentService {
   private contents: ContentModel[] = [];
   private contentSubject = new Subject<ContentModel[]>();
+  private isSigned = false;
 
 getAllcontents() {
   const values = [{
@@ -70,6 +71,16 @@ getAllcontents() {
   this.contents = values;
   // this.contentSubject.next([...this.contents]);
   return [...this.contents];
+}
+
+signed(val: boolean){
+  this.isSigned = val;
+  console.log('value updated ' + this.isSigned);
+}
+
+checkSigned() {
+  console.log('checked Signed called ' + this.isSigned);
+  return this.isSigned;
 }
 
 // contentAsObservable(): Observable<ContentModel[]> {

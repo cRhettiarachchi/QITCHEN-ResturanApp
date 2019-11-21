@@ -15,6 +15,8 @@ import { DesertsComponent } from './landing-page/landing-content/deserts/deserts
 import { CoffeeComponent } from './landing-page/landing-content/coffee/coffee.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { ContactComponent } from './contact/contact.component';
+import { SignInComponent } from './sign-in/sign-in.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { ContactComponent } from './contact/contact.component';
     DesertsComponent,
     CoffeeComponent,
     AboutUsComponent,
-    ContactComponent
+    ContactComponent,
+    SignInComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

@@ -9,6 +9,8 @@ import {DesertsComponent} from './landing-page/landing-content/deserts/deserts.c
 import {CoffeeComponent} from './landing-page/landing-content/coffee/coffee.component';
 import {AboutUsComponent} from './about-us/about-us.component';
 import {ContactComponent} from './contact/contact.component';
+import {SignInComponent} from './sign-in/sign-in.component';
+import {DashboardComponent} from './dashboard/dashboard.component';
 
 
 const routes: Routes = [
@@ -25,7 +27,9 @@ const routes: Routes = [
     ]
   },
   {path: 'about-us', component: AboutUsComponent},
-  {path: 'contact', component: ContactComponent}
+  {path: 'contact', component: ContactComponent},
+  {path: 'sign-in', component: SignInComponent},
+  {path: 'dashboard', component: DashboardComponent}
 ];
 
 @NgModule({
