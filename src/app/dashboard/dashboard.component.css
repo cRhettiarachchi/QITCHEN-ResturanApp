@@ -1,0 +1,22 @@
+
+.navigation{
+   background-color: rgba(255, 227, 237, 0.54);
+   height: 100vh;
+ }
+
+.details{
+  margin: 8% 8%;
+}
+
+.name{
+  font-size: 160%;
+  color: #851de0;
+}
+
+.date{
+  color: #6f6f6f;
+}
+
+li{
+  border-bottom: rgba(144, 144, 144, 0.62) 1px solid;
+}
