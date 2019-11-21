@@ -24,7 +24,7 @@ li{
 
 .nav-link{
   color: #828282;
-  font-size: 115%;
+  font-size: 110%;
 }
 
 .nav-link:hover{
@@ -32,7 +32,7 @@ li{
 }
 
 .dashboard-icons{
-  width: 12%;
+  width: 10%;
   fill: #828282;
 }
 
@@ -42,4 +42,5 @@ span{
 
 .active{
   background-color: white;
+  border-radius: 5px;
 }

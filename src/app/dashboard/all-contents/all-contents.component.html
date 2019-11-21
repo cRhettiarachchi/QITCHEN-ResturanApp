@@ -1,1 +1,17 @@
-<p>all-contents works!</p>
+ <div class="container">
+   <div class="row">
+     <h2 class = "heading">All Contents</h2>
+   </div>
+   <div class="row">
+     <div class="content" *ngFor="let content of allContents">
+       <div class="col-12">
+         <div class="card">
+           <div class="card-body">
+             <img [src] = "content.img">
+             <h3 class = "content-heading">{{content.heading}}</h3>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+ </div>

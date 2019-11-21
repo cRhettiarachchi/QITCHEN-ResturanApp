@@ -1,0 +1,28 @@
+.heading{
+  margin-top: 3%;
+}
+
+.content{
+  width: 100%;
+}
+
+img{
+  width: 10%;
+  border-radius: 6px;
+}
+
+.card{
+  margin-top: 5%;
+
+}
+
+.card-body{
+  padding:1% 5%;
+}
+
+.content-heading{
+  display:inline;
+  margin-left: 10%;
+  font-weight: 100;
+  color: #828282;
+}
