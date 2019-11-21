@@ -11,9 +11,5 @@ export class SignInComponent implements OnInit {
 
   ngOnInit() {
   }
-  signIn() {
-    console.log('button clicked');
-    this.contentService.signed(true);
-  }
 
 }

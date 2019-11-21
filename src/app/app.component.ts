@@ -1,16 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {ContentService} from './services/content.service';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
-  isSigned = false;
-  constructor(private valueService: ContentService) {}
-
-  ngOnInit() {
-    this. isSigned = this.valueService.checkSigned();
-  }
+export class AppComponent {
 }
