@@ -11,6 +11,10 @@ import {AboutUsComponent} from './about-us/about-us.component';
 import {ContactComponent} from './contact/contact.component';
 import {SignInComponent} from './sign-in/sign-in.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
+import {AllContentsComponent} from './dashboard/all-contents/all-contents.component';
+import {AddContentComponent} from './dashboard/add-content/add-content.component';
+import {ViewAboutUsComponent} from './dashboard/view-about-us/view-about-us.component';
+import {ViewContactUsComponent} from './dashboard/view-contact-us/view-contact-us.component';
 
 
 const routes: Routes = [
@@ -29,7 +33,14 @@ const routes: Routes = [
   {path: 'about-us', component: AboutUsComponent},
   {path: 'contact', component: ContactComponent},
   {path: 'sign-in', component: SignInComponent},
-  {path: 'dashboard', component: DashboardComponent}
+  {path: 'dashboard',
+    component: DashboardComponent,
+    children: [
+      {path: '', component: AllContentsComponent},
+      {path: 'add-content', component: AddContentComponent},
+      {path: 'view-about-us', component: ViewAboutUsComponent},
+      {path: 'view-contact-us', component: ViewContactUsComponent}
+    ]}
 ];
 
 @NgModule({

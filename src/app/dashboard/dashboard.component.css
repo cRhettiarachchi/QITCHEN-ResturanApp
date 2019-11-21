@@ -1,7 +1,7 @@
 
 .navigation{
    background-color: rgba(255, 227, 237, 0.54);
-   height: 100vh;
+   height: 90vh;
  }
 
 .details{
@@ -13,10 +13,33 @@
   color: #851de0;
 }
 
-.date{
-  color: #6f6f6f;
+li{
+  margin-top: 5%;
 }
 
-li{
-  border-bottom: rgba(144, 144, 144, 0.62) 1px solid;
+.date{
+  color: #828282;
+}
+
+
+.nav-link{
+  color: #828282;
+  font-size: 115%;
+}
+
+.nav-link:hover{
+  color: black;
+}
+
+.dashboard-icons{
+  width: 12%;
+  fill: #828282;
+}
+
+span{
+  margin-left: 5%;
+}
+
+.active{
+  background-color: white;
 }
