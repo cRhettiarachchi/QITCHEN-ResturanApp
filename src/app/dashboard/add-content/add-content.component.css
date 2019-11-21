@@ -6,7 +6,15 @@
   text-align: center;
 }
 
+h3{
+  margin-top: 20%;
+}
+
 .input-description{
   font-size: 120%;
   color: #828282;
+}
+
+.form-control{
+  box-shadow: none;
 }
