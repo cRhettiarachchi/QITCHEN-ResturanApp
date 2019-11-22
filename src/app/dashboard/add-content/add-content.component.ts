@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {ContentService} from '../../services/content.service';
 
 @Component({
   selector: 'app-add-content',
@@ -12,25 +13,31 @@ export class AddContentComponent implements OnInit {
   // imagePreview: string | ArrayBuffer = '';
   imagePreview: string | ArrayBuffer;
 
-  constructor() { }
+  constructor(private contentService: ContentService) { }
 
   ngOnInit() {
     this.formValue = new FormGroup({
       heading: new FormControl(null,
-        {validators: [Validators.required, Validators.minLength(3)],
-          updateOn: 'blur'
+        {validators: [Validators.required, Validators.minLength(3)]
         }),
       description: new FormControl(null,
-        {validators: [Validators.required, Validators.minLength(10)],
-          updateOn: 'blur'
+        {validators: [Validators.required, Validators.minLength(10)]
         }),
       category: new FormControl('Breakfast'),
       image: new FormControl(null, {validators: [Validators.required]})
     });
   }
   FormSubmit() {
-    console.log(this.formValue.value.heading + ' ' + this.formValue.value.description + ' ' + this.formValue.value.category);
-    this.formValue.reset({category: 'Breakfast'});
+    if(!this.formValue.valid) {
+      return;
+    }
+    console.log(this.formValue.value.category);
+    this.contentService.postvalues('sdfsdf',
+      this.formValue.value.heading,
+      this.formValue.value.description,
+      this.formValue.value.category).subscribe(result => {
+      this.formValue.reset({category: 'Breakfast'});
+    });
   }
 
   onImagePick(event: Event) {

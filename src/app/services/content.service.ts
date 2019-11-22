@@ -13,12 +13,16 @@ export class ContentService {
   private getContentUrl = 'http://localhost:8080/contents';
 
 getAllcontents() {
-
   this.http.get<{message: string, contents: ContentModel[]}>(this.getContentUrl).subscribe((gotContents) => {
     this.contents = gotContents.contents;
-    console.log(gotContents);
     this.contentSubject.next(this.contents);
   });
+}
+
+postvalues(id: string, heading: string, description: string, category: string) {
+  const content: ContentModel = new ContentModel(id, heading, description, category);
+  console.log(content);
+  return this.http.post<{message: string}>(this.getContentUrl, content);
 }
 
 contentAsObservable(): Observable<ContentModel[]> {

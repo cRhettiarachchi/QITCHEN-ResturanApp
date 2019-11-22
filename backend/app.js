@@ -1,9 +1,12 @@
 const express = require('express');
+const bodyparser = require('body-parser');
 const app = express();
 
 // app.use((req, res, next) => {
 //   res.send('this is great');
 // });
+
+app.use(bodyparser.json());
 
 app.use(function(req, res, next) {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -64,6 +67,14 @@ app.get('/contents', (req, res, next) => {
   res.json({
     message: 'good',
     contents: contents
+  });
+});
+
+app.post('/contents', (req, res, next) => {
+  const contents = req.body;
+  console.log(contents);
+  res.status(200).json({
+    message: "good"
   });
 });
 
