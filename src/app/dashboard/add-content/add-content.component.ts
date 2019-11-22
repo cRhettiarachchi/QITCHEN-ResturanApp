@@ -24,7 +24,7 @@ export class AddContentComponent implements OnInit {
         {validators: [Validators.required, Validators.minLength(10)]
         }),
       category: new FormControl('Breakfast'),
-      image: new FormControl(null, {validators: [Validators.required]})
+      image: new FormControl(null)
     });
   }
   FormSubmit() {
