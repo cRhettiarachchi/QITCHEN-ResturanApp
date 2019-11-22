@@ -14,11 +14,12 @@ export class LandingContentComponent implements OnInit {
   constructor(private contentService: ContentService) { }
 
   ngOnInit() {
-    this.contents = this.contentService.getAllcontents();
-    // this.contentService.contentAsObservable().subscribe((content: ContentModel[]) => {
-    //   console.log('get content in component');
-    //   this.contents = content;
-    // });
+    this.contentService.getAllcontents();
+    this.contentService.contentAsObservable().subscribe((content) => {
+      console.log('get content in component');
+      console.log(content);
+      this.contents = content;
+    });
     // console.log(this.contents);
   }
 

@@ -14,8 +14,9 @@ export class ContentService {
 
 getAllcontents() {
 
-  this.http.get<{contents: ContentModel[]}>(this.getContentUrl).subscribe((gotContents) =>{
+  this.http.get<{message: string, contents: ContentModel[]}>(this.getContentUrl).subscribe((gotContents) => {
     this.contents = gotContents.contents;
+    console.log(gotContents);
     this.contentSubject.next(this.contents);
   });
 }

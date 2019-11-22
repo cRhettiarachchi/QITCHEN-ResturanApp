@@ -13,7 +13,11 @@ export class AllContentsComponent implements OnInit {
   constructor(private contentService: ContentService) { }
 
   ngOnInit() {
-    this.allContents = this.contentService.getAllcontents();
+    this.contentService.getAllcontents();
+    this.contentService.contentAsObservable().subscribe((content) => {
+      this.allContents = content;
+      console.log(this.allContents);
+    });
   }
 
 }

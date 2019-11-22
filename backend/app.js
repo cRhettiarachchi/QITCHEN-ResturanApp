@@ -5,6 +5,12 @@ const app = express();
 //   res.send('this is great');
 // });
 
+app.use(function(req, res, next) {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 app.get('/contents', (req, res, next) => {
   const contents = [{
     id: '1',
@@ -55,7 +61,10 @@ app.get('/contents', (req, res, next) => {
       category: 'coffee'
     }];
 
-  res.json(contents);
+  res.json({
+    message: 'good',
+    contents: contents
+  });
 });
 
 
