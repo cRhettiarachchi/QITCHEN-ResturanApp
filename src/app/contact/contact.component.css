@@ -1,0 +1,10 @@
+.contact-heading{
+  margin-top: 5%;
+}
+
+.contact-form{
+  border-bottom: 1px solid black;
+  margin: 5% auto;
+  text-align: center;
+  padding-bottom: 3%;
+}
