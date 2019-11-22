@@ -17,6 +17,15 @@
           </p>
         </div>
         <div class="form-group">
+          <select class="form-control" formControlName="category">
+            <option>Breakfast</option>
+            <option>Lunch</option>
+            <option>Dinner</option>
+            <option>Deserts</option>
+            <option>Coffee</option>
+          </select>
+        </div>
+        <div class="form-group">
           <textarea class = "text-area"
                     placeholder="Description"
                     class="form-control"
@@ -26,6 +35,17 @@
           <p class = "form-error" *ngIf="formValue.get('description').invalid && formValue.get('description').dirty">
             Description must be at least 10 characters
           </p>
+        </div>
+        <div class = "file-picker-div">
+          <div class="row">
+            <div class="col-6">
+              <button type = "button" class = "btn btn-primary file-button" (click)="filePicker.click()">Select image</button>
+              <input type="file" class = "file-picker" #filePicker (change)="onImagePick($event)">
+            </div>
+            <div class = "col-6" *ngIf="imagePreview">
+              <img class = "preview" [src]="imagePreview" [alt]="formValue.get('heading')">
+            </div>
+          </div>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
