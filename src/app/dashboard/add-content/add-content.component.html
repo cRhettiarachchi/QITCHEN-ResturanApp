@@ -6,15 +6,31 @@
     <div class="col-5 m-auto form">
       <h3>Your content matters!</h3>
       <p class = "input-description">Your first 30 letters are the most important because only those will be displayed on the main page. So, make them count!.</p>
-      <form>
+      <form [formGroup]="formValue" (submit)= "FormSubmit()">
         <div class="form-group">
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Heading">
+          <input type="email"
+                 class="form-control"
+                 placeholder="Enter Heading"
+                  formControlName="heading">
+          <p class = "form-error" *ngIf="formValue.get('heading').invalid && (formValue.get('heading').dirty)">
+            Heading must be at least 3 characters
+          </p>
         </div>
         <div class="form-group">
-          <textarea class = "text-area" placeholder="Description" class="form-control" id="exampleFormControlTextarea1" rows="4"></textarea>
+          <textarea class = "text-area"
+                    placeholder="Description"
+                    class="form-control"
+                    rows="4"
+                    formControlName="description">
+          </textarea>
+          <p class = "form-error" *ngIf="formValue.get('description').invalid && formValue.get('description').dirty">
+            Description must be at least 10 characters
+          </p>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
     </div>
   </div>
 </div>
+
+<!--id="exampleInputEmail1" aria-describedby="emailHelp"-->

@@ -21,6 +21,7 @@ import { AllContentsComponent } from './dashboard/all-contents/all-contents.comp
 import { AddContentComponent } from './dashboard/add-content/add-content.component';
 import { ViewAboutUsComponent } from './dashboard/view-about-us/view-about-us.component';
 import { ViewContactUsComponent } from './dashboard/view-contact-us/view-contact-us.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,8 @@ import { ViewContactUsComponent } from './dashboard/view-contact-us/view-contact
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule
   ],
   providers: [],

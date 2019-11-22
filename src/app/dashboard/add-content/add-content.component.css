@@ -18,3 +18,8 @@ h3{
 .form-control{
   box-shadow: none;
 }
+
+.form-error{
+  color: red;
+  text-align: left !important;
+}
