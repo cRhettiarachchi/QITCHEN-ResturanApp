@@ -22,6 +22,7 @@ import { AddContentComponent } from './dashboard/add-content/add-content.compone
 import { ViewAboutUsComponent } from './dashboard/view-about-us/view-about-us.component';
 import { ViewContactUsComponent } from './dashboard/view-contact-us/view-contact-us.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

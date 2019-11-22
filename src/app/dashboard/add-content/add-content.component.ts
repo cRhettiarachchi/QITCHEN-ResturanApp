@@ -10,7 +10,7 @@ export class AddContentComponent implements OnInit {
 
   formValue: FormGroup;
   // imagePreview: string | ArrayBuffer = '';
-  imagePreview: Blob;
+  imagePreview: string | ArrayBuffer;
 
   constructor() { }
 
