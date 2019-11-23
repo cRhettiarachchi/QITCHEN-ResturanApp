@@ -20,4 +20,8 @@ export class AllContentsComponent implements OnInit {
     });
   }
 
+  onDelete(id: string) {
+    this.contentService.deleteContent(id);
+  }
+
 }

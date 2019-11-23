@@ -12,6 +12,7 @@ export class AddContentComponent implements OnInit {
   formValue: FormGroup;
   // imagePreview: string | ArrayBuffer = '';
   imagePreview: string | ArrayBuffer;
+  message: string;
 
   constructor(private contentService: ContentService) { }
 

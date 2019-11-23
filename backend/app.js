@@ -17,8 +17,9 @@ mongoose.connect("mongodb+srv://Charith:K7ulBusW5xqve3y0@cluster0-ow00d.mongodb.
 app.use(bodyparser.json());
 
 app.use(function(req, res, next) {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header('Access-Control-Allow-Headers', '*');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS');
   next();
 });
 // 2orBJk23OtCucTyp
@@ -26,7 +27,6 @@ app.use(function(req, res, next) {
 app.get('/contents', (req, res, next) => {
   Contents.find()
     .then((documents) => {
-      console.log(documents);
       res.json({
         message: 'good',
         contents: documents
@@ -42,11 +42,20 @@ app.post('/contents', (req, res, next) => {
   });
   content.save().then((value) => {
     res.status(200).json({
-      message: "good",
+      message: "done",
       id: value._id
     });
   });
 });
 
+app.delete('/contents/:id', (req, res, next) => {
+  console.log('delete mehtod called');
+  Contents.deleteOne({id: req.params.id}).then(value => {
+    console.log(value);
+    res.json({
+      message: 'done'
+    })
+  })
+});
 
 module.exports = app;

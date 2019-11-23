@@ -9,6 +9,7 @@ import { map } from 'rxjs/operators';
 export class ContentService {
   private contents: ContentModel[] = [];
   private contentSubject = new Subject<ContentModel[]>();
+  private resultmessage:string;
 
   private getContentUrl = 'http://localhost:8080/contents';
 
@@ -39,9 +40,16 @@ postvalues(heading: string, description: string, category: string) {
       content.id = value.id;
       this.contents.push(content);
       this.contentSubject.next([...this.contents]);
+      this.resultmessage = value.message;
     });
 }
 
+deleteContent(id: string) {
+  this.http.delete<{message: string}>(this.getContentUrl + '/'+ id).subscribe(value => {
+    this.contents = this.contents.filter(content => content.id !== id);
+    this.contentSubject.next([...this.contents]);
+  });
+}
 contentAsObservable(): Observable<ContentModel[]> {
   return this.contentSubject.asObservable();
 }
