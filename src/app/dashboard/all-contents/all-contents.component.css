@@ -4,41 +4,29 @@
 
 .content{
   width: 100%;
+  margin-top: 3%;
+  border: 1px solid rgba(130, 130, 130, 0.5);
+  border-radius: 10px;
 }
 
 img{
-  width: 10%;
+  width: 100%;
   border-radius: 6px;
 }
 
-.card{
-  margin-top: 5%;
-
-}
-
-.card-body{
-  padding:1% 5%;
-}
-
 .content-heading{
-  display:inline;
-  margin-left: 10%;
   font-weight: 100;
   color: #828282;
 }
 
-.right-side{
-  display: inline;
-  margin-left: 60%;
-}
 
-.right-side a{
-  display: inline;
-  margin-left: 1%;
+a{
+  display: inline !important;
 }
 
 .icons{
-  width: 3%;
+  width: 20%;
+  margin-left: 5%;
   fill: #828282;
 }
 
