@@ -50,8 +50,8 @@ app.post('/contents', (req, res, next) => {
 
 app.delete('/contents/:id', (req, res, next) => {
   console.log('delete mehtod called');
-  Contents.deleteOne({id: req.params.id}).then(value => {
-    console.log(value);
+  Contents.deleteOne({_id: req.params.id}).then(value => {
+    console.log('deletion is done');
     res.json({
       message: 'done'
     })
