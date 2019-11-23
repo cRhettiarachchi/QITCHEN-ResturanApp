@@ -1,7 +1,9 @@
+.dashboard-content{
+  height: 100%;
+}
 
 .navigation{
    background-color: rgba(255, 227, 237, 0.54);
-   height: 90vh;
  }
 
 .details{
