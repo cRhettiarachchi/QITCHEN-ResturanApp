@@ -16,8 +16,6 @@ export class LandingContentComponent implements OnInit {
   ngOnInit() {
     this.contentService.getAllcontents();
     this.contentService.contentAsObservable().subscribe((content) => {
-      console.log('get content in component');
-      console.log(content);
       this.contents = content;
     });
     // console.log(this.contents);

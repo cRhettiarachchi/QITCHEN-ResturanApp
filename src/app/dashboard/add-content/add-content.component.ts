@@ -28,20 +28,17 @@ export class AddContentComponent implements OnInit {
     });
   }
   FormSubmit() {
-    if(!this.formValue.valid) {
+    if (!this.formValue.valid) {
       return;
     }
-    console.log(this.formValue.value.category);
-    this.contentService.postvalues('sdfsdf',
+    this.contentService.postvalues(
       this.formValue.value.heading,
       this.formValue.value.description,
-      this.formValue.value.category).subscribe(result => {
-      this.formValue.reset({category: 'Breakfast'});
-    });
+      this.formValue.value.category);
+    this.formValue.reset({category: 'Breakfast'});
   }
 
   onImagePick(event: Event) {
-    console.log('this is executed');
     const file = (event.target as HTMLInputElement).files[0];
     this.formValue.patchValue({image: file});
     this.formValue.get('image').updateValueAndValidity();
