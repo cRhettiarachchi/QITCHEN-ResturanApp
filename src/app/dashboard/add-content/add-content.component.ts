@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ContentService} from '../../services/content.service';
+import {ActivatedRoute, ParamMap} from '@angular/router';
+import {ContentModel} from '../../models/content.model';
 
 @Component({
   selector: 'app-add-content',
@@ -13,10 +15,23 @@ export class AddContentComponent implements OnInit {
   // imagePreview: string | ArrayBuffer = '';
   imagePreview: string | ArrayBuffer;
   message: string;
+  type = 'create';
+  id: string;
+  content: ContentModel = null;
 
-  constructor(private contentService: ContentService) { }
+  constructor(private contentService: ContentService, private router: ActivatedRoute) { }
 
   ngOnInit() {
+    this.router.paramMap.subscribe((paramMap: ParamMap) => {
+      if(paramMap.has('id')) {
+        this.type = 'edit';
+        this.id = paramMap.get('id');
+        this.content = this.contentService.getContent(this.id);
+      } else {
+        this.type = 'create';
+        this.id = null;
+      }
+    });
     this.formValue = new FormGroup({
       heading: new FormControl(null,
         {validators: [Validators.required, Validators.minLength(3)]
@@ -27,16 +42,29 @@ export class AddContentComponent implements OnInit {
       category: new FormControl('Breakfast'),
       image: new FormControl(null)
     });
+    if (this.type === 'edit') {
+      this.formValue.patchValue({heading: this.content.heading});
+      this.formValue.patchValue({description: this.content.description});
+      this.formValue.patchValue({category: this.content.category});
+    }
   }
   FormSubmit() {
     if (!this.formValue.valid) {
       return;
     }
-    this.contentService.postvalues(
-      this.formValue.value.heading,
-      this.formValue.value.description,
-      this.formValue.value.category);
-    this.formValue.reset({category: 'Breakfast'});
+    if (this.type === 'create') {
+      this.contentService.postvalues(
+        this.formValue.value.heading,
+        this.formValue.value.description,
+        this.formValue.value.category);
+      this.formValue.reset({category: 'Breakfast'});
+    } else {
+      this.contentService.updateContent(this.id,
+        this.formValue.value.heading,
+        this.formValue.value.description,
+        this.formValue.value.category);
+      this.formValue.reset();
+    }
   }
 
   onImagePick(event: Event) {

@@ -44,8 +44,25 @@ postvalues(heading: string, description: string, category: string) {
     });
 }
 
+getContent(id: string) {
+  return {...this.contents.find(p => p.id === id)};
+}
+
+updateContent(id: string, head: string, desc: string, cat: string) {
+  const updateContent = {
+    id: id,
+    heading: head,
+    description: desc,
+    category: cat
+  };
+  this.http.patch<{message: string}>(this.getContentUrl + '/' + id, updateContent)
+    .subscribe(value => {
+      console.log('updated successfully');
+    });
+}
+
 deleteContent(id: string) {
-  this.http.delete<{message: string}>(this.getContentUrl + '/'+ id).subscribe(value => {
+  this.http.delete<{message: string}>(this.getContentUrl + '/' + id).subscribe(value => {
     this.contents = this.contents.filter(content => content.id !== id);
     this.contentSubject.next([...this.contents]);
   });

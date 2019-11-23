@@ -38,6 +38,7 @@ const routes: Routes = [
     children: [
       {path: '', component: AllContentsComponent},
       {path: 'add-content', component: AddContentComponent},
+      {path: 'edit/:id', component: AddContentComponent},
       {path: 'view-about-us', component: ViewAboutUsComponent},
       {path: 'view-contact-us', component: ViewContactUsComponent}
     ]}
