@@ -27,14 +27,14 @@ export class AddContentComponent implements OnInit {
         this.type = 'edit';
         this.id = paramMap.get('id');
         this.contentService.getContent(this.id).subscribe(value => {
-          this.content = {id: value._id,
-            heading: value.heading,
-            description: value.description,
-            category: value.category
-          };
-          this.formValue.patchValue({heading: this.content.heading});
-          this.formValue.patchValue({description: this.content.description});
-          this.formValue.patchValue({category: this.content.category});
+          // this.content = {id: value._id,
+          //   heading: value.heading,
+          //   description: value.description,
+          //   category: value.category
+          // };
+          this.formValue.patchValue({heading: value.heading});
+          this.formValue.patchValue({description: value.description});
+          this.formValue.patchValue({category: value.category});
         });
       } else {
         this.type = 'create';
