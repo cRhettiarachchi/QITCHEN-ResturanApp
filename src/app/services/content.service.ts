@@ -45,7 +45,12 @@ postvalues(heading: string, description: string, category: string) {
 }
 
 getContent(id: string) {
-  return {...this.contents.find(p => p.id === id)};
+  return this.http.get<{
+    _id: string,
+    heading: string,
+    description: string,
+    category: string
+  }>(this.getContentUrl + '/' + id);
 }
 
 updateContent(id: string, head: string, desc: string, cat: string) {

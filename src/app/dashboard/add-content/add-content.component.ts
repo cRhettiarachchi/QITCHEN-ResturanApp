@@ -23,10 +23,19 @@ export class AddContentComponent implements OnInit {
 
   ngOnInit() {
     this.router.paramMap.subscribe((paramMap: ParamMap) => {
-      if(paramMap.has('id')) {
+      if (paramMap.has('id')) {
         this.type = 'edit';
         this.id = paramMap.get('id');
-        this.content = this.contentService.getContent(this.id);
+        this.contentService.getContent(this.id).subscribe(value => {
+          this.content = {id: value._id,
+            heading: value.heading,
+            description: value.description,
+            category: value.category
+          };
+          this.formValue.patchValue({heading: this.content.heading});
+          this.formValue.patchValue({description: this.content.description});
+          this.formValue.patchValue({category: this.content.category});
+        });
       } else {
         this.type = 'create';
         this.id = null;
@@ -42,11 +51,6 @@ export class AddContentComponent implements OnInit {
       category: new FormControl('Breakfast'),
       image: new FormControl(null)
     });
-    if (this.type === 'edit') {
-      this.formValue.patchValue({heading: this.content.heading});
-      this.formValue.patchValue({description: this.content.description});
-      this.formValue.patchValue({category: this.content.category});
-    }
   }
   FormSubmit() {
     if (!this.formValue.valid) {
@@ -63,7 +67,7 @@ export class AddContentComponent implements OnInit {
         this.formValue.value.heading,
         this.formValue.value.description,
         this.formValue.value.category);
-      this.formValue.reset();
+      this.formValue.reset({category: 'Breakfast'});
     }
   }
 

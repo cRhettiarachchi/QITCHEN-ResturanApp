@@ -69,4 +69,16 @@ app.patch('/contents/:id', (req, res, next) => {
   });
 });
 
+app.get('/contents/:id', (req, res, next) => {
+  Contents.findById(req.params.id).then(content => {
+    if(content) {
+      res.json(content);
+    } else {
+      res.status(404).json({
+        message: 'no content'
+      })
+    }
+  })
+});
+
 module.exports = app;
