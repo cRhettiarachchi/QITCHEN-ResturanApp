@@ -38,3 +38,8 @@ h3{
   width: 150px;
   border-radius: 5px;
 }
+
+.success{
+  text-align: left;
+  color: green;
+}

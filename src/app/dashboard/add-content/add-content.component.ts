@@ -59,14 +59,24 @@ export class AddContentComponent implements OnInit {
         this.formValue.value.heading,
         this.formValue.value.description,
         this.formValue.value.category,
-        this.formValue.value.image);
-      this.formValue.reset({category: 'Breakfast'});
+        this.formValue.value.image).subscribe(value => {
+          if (value.message === 'done') {
+            this.formValue.reset({category: 'Breakfast'});
+            this.message = 'created';
+            this.imagePreview = null;
+          }
+      });
     } else {
       this.contentService.updateContent(this.id,
         this.formValue.value.heading,
         this.formValue.value.description,
         this.formValue.value.category,
-        this.formValue.value.image);
+        this.formValue.value.image).subscribe(value => {
+          if(value.message === 'done'){
+            this.message = 'updated';
+            this.imagePreview = null;
+          }
+      })
       this.formValue.reset({category: 'Breakfast'});
     }
   }

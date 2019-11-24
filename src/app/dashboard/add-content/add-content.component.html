@@ -40,14 +40,15 @@
             <div class="col-6">
               <button type = "button" class = "btn btn-primary file-button" (click)="filePicker.click()">Select image</button>
               <input type="file" class = "file-picker" #filePicker (change)="onImagePick($event)">
-              <p class = "form-error" *ngIf="formValue.get('image').invalid && (formValue.get('image').dirty)">
+              <p class = "form-error" *ngIf="formValue.get('image').invalid">
             </div>
             <div class = "col-6" *ngIf="imagePreview">
               <img class = "preview" [src]="imagePreview" [alt]="formValue.get('heading')">
             </div>
           </div>
         </div>
-        <p class = "success" *ngIf="message === 'done'">Content Added</p>
+        <p class = "success" *ngIf="message === 'created'">Content Added</p>
+        <p class = "success" *ngIf="message === 'updated'">Content Updated</p>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
     </div>

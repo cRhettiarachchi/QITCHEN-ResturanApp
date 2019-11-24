@@ -9,7 +9,7 @@ import { map } from 'rxjs/operators';
 export class ContentService {
   private contents: ContentModel[] = [];
   private contentSubject = new Subject<ContentModel[]>();
-  private resultmessage:string;
+  private resultmessage: string;
 
   private getContentUrl = 'http://localhost:8080/contents';
 
@@ -41,14 +41,7 @@ postvalues(heading: string, description: string, category: string, file: File) {
   postData.append('category', category);
   postData.append('image', file, heading);
   console.log(file);
-  this.http.post<{message: string, contentValue: ContentModel}>(this.getContentUrl, postData)
-    .subscribe(value => {
-      const content: ContentModel = new ContentModel(heading, description, category, value.contentValue.imagePath);
-      content.id = value.contentValue.id;
-      this.contents.push(content);
-      this.contentSubject.next([...this.contents]);
-      this.resultmessage = value.message;
-    });
+  return this.http.post<{message: string, contentValue: ContentModel}>(this.getContentUrl, postData);
 }
 
 getContent(id: string) {
@@ -78,10 +71,7 @@ updateContent(id: string, head: string, desc: string, cat: string, imgPath: File
       imagePath: imgPath
     };
   }
-  this.http.patch<{message: string}>(this.getContentUrl + '/' + id, contentData)
-    .subscribe(value => {
-      console.log('updated successfully');
-    });
+  return this.http.patch<{message: string}>(this.getContentUrl + '/' + id, contentData);
 }
 
 deleteContent(id: string) {
