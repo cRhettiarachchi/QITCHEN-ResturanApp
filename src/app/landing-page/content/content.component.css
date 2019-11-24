@@ -1,0 +1,29 @@
+.main-heading{
+  margin-top: 5%;
+}
+
+.main-content{
+  margin-top: 3%;
+}
+
+h1{
+  font-size: 300%;
+  font-weight: 300;
+  color: #464646;
+}
+
+.pageImage{
+  width: 100%;
+  border-radius: 5px;
+  box-shadow: 3px 6px #828282;
+}
+
+.description{
+  font-size: 130%;
+  color: #6e6e6e;
+}
+
+.category{
+  font-size: 120%;
+  color: #851de0;
+}

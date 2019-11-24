@@ -22,23 +22,25 @@ export class AddContentComponent implements OnInit {
   constructor(private contentService: ContentService, private router: ActivatedRoute) { }
 
   ngOnInit() {
+    // get the id from the router
     this.router.paramMap.subscribe((paramMap: ParamMap) => {
-      if (paramMap.has('id')) {
+      if (paramMap.has('id')) { // check if the router has an Id
         this.type = 'edit';
         this.id = paramMap.get('id');
+        // set the values for the front end
         this.contentService.getContent(this.id).subscribe(value => {
           this.formValue.patchValue({heading: value.heading});
           this.formValue.patchValue({description: value.description});
           this.formValue.patchValue({category: value.category});
           this.formValue.patchValue({image: value.imagePath});
-          console.log(value.imagePath);
         });
       } else {
         this.type = 'create';
         this.id = null;
       }
     });
-    this.formValue = new FormGroup({
+    this.formValue = new FormGroup({ // create new form group
+      // defining the values in the form
       heading: new FormControl(null,
         {validators: [Validators.required, Validators.minLength(3)]
         }),
@@ -48,10 +50,10 @@ export class AddContentComponent implements OnInit {
       category: new FormControl('Breakfast'),
       image: new FormControl(null,
         {validators: [Validators.required]})
-    });
+    }); // end of defining the form
   } // End of ngOnInit
   FormSubmit() {
-    if (!this.formValue.valid) {
+    if (!this.formValue.valid) { // check if form is valid ( part of front end validation )
       return;
     }
     if (this.type === 'create') {
@@ -81,7 +83,7 @@ export class AddContentComponent implements OnInit {
     }
   }
 
-  onImagePick(event: Event) {
+  onImagePick(event: Event) { // creating the preview
     const file = (event.target as HTMLInputElement).files[0];
     this.formValue.patchValue({image: file});
     this.formValue.get('image').updateValueAndValidity();

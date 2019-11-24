@@ -15,6 +15,7 @@ import {AllContentsComponent} from './dashboard/all-contents/all-contents.compon
 import {AddContentComponent} from './dashboard/add-content/add-content.component';
 import {ViewAboutUsComponent} from './dashboard/view-about-us/view-about-us.component';
 import {ViewContactUsComponent} from './dashboard/view-contact-us/view-contact-us.component';
+import {ContentComponent} from './landing-page/content/content.component';
 
 
 const routes: Routes = [
@@ -33,6 +34,7 @@ const routes: Routes = [
   {path: 'about-us', component: AboutUsComponent},
   {path: 'contact', component: ContactComponent},
   {path: 'sign-in', component: SignInComponent},
+  {path: 'content/:id', component: ContentComponent},
   {path: 'dashboard',
     component: DashboardComponent,
     children: [

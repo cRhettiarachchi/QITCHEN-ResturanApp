@@ -4,7 +4,7 @@
     <div class="wrapper" *ngFor="let content of contents">
       <div class="col-md-4" *ngIf="content.category === 'Dinner'" >
         <div class="card" style="width: 18rem;"  >
-          <a href = ""><img [src]="content.imagePath" class="card-img-top" alt="...">
+          <a [routerLink]="['/content', content.id]"><img [src]="content.imagePath" class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">{{content.heading}}</h5>
               <p class="card-text">{{content.description}}</p>

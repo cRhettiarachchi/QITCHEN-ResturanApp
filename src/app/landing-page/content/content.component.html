@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="row main-heading">
+    <h1 class = "m-auto">{{content.heading}}</h1>
+  </div>
+  <div class="row main-content">
+    <div class="col-md-6 m-auto">
+      <img class = "pageImage" [src]="content.imagePath" [alt]="content.heading">
+    </div>
+    <div class="col-md-4">
+      <p class = "description">{{content.description}}</p>
+      <p class = "category">Category: {{content.category}}</p>
+    </div>
+  </div>
+</div>

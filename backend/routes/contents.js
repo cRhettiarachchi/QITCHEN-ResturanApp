@@ -27,6 +27,7 @@ const storage = multer.diskStorage({
   }
 });
 
+// Get method to get all the content
 router.get('', (req, res, next) => {
   Contents.find()
     .then((documents) => {
@@ -37,6 +38,7 @@ router.get('', (req, res, next) => {
     })
 });
 
+// Post method to create new content
 router.post('', multer({storage: storage}).single("image"), (req, res, next) => {
   const url = req.protocol + '://' + req.get('host');
   const content = new Contents({

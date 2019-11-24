@@ -23,6 +23,7 @@ import { ViewAboutUsComponent } from './dashboard/view-about-us/view-about-us.co
 import { ViewContactUsComponent } from './dashboard/view-contact-us/view-contact-us.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
+import { ContentComponent } from './landing-page/content/content.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import {HttpClientModule} from '@angular/common/http';
     AllContentsComponent,
     AddContentComponent,
     ViewAboutUsComponent,
-    ViewContactUsComponent
+    ViewContactUsComponent,
+    ContentComponent
   ],
   imports: [
     BrowserModule,
