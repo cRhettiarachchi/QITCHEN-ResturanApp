@@ -3,10 +3,10 @@
     <div class="wrapper" *ngFor="let content of contents">
       <div class="col-md-4">
         <div class="card" style="width: 18rem;"  >
-          <a href = ""><img [src]="content.img" class="card-img" alt="food-images">
+          <a href = ""><img [src]="content.imagePath" class="card-img" alt="food-images">
             <div class="card-body">
               <h5 class="card-title">{{content.heading}}</h5>
-              <p class="card-text">{{content.desc}}</p>
+              <p class="card-text">{{content.description}}</p>
             </div></a>
         </div>
       </div>

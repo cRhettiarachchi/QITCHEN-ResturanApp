@@ -40,6 +40,7 @@
             <div class="col-6">
               <button type = "button" class = "btn btn-primary file-button" (click)="filePicker.click()">Select image</button>
               <input type="file" class = "file-picker" #filePicker (change)="onImagePick($event)">
+              <p class = "form-error" *ngIf="formValue.get('image').invalid && (formValue.get('image').dirty)">
             </div>
             <div class = "col-6" *ngIf="imagePreview">
               <img class = "preview" [src]="imagePreview" [alt]="formValue.get('heading')">

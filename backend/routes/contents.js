@@ -70,11 +70,19 @@ router.delete('/:id', (req, res, next) => {
   })
 });
 
-router.patch('/:id', (req, res, next) => {
+router.patch('/:id', multer({storage: storage}).single("image"), (req, res, next) => {
+  let imgPath;
+  if (req.file){
+    const url = req.protocol + '://' + req.get('host');
+    imgPath = url + '/images/' + req.file.filename;
+  } else {
+    imgPath = req.body.imagePath;
+  }
   const updateContent = {
     heading: req.body.heading,
     description: req.body.description,
-    category: req.body.category
+    category: req.body.category,
+    imagePath: imgPath
   };
   Contents.updateOne({_id: req.params.id}, updateContent).then(value => {
     console.log('updated successfully');

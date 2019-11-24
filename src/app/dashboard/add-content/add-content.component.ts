@@ -27,14 +27,11 @@ export class AddContentComponent implements OnInit {
         this.type = 'edit';
         this.id = paramMap.get('id');
         this.contentService.getContent(this.id).subscribe(value => {
-          // this.content = {id: value._id,
-          //   heading: value.heading,
-          //   description: value.description,
-          //   category: value.category
-          // };
           this.formValue.patchValue({heading: value.heading});
           this.formValue.patchValue({description: value.description});
           this.formValue.patchValue({category: value.category});
+          this.formValue.patchValue({image: value.imagePath});
+          console.log(value.imagePath);
         });
       } else {
         this.type = 'create';
@@ -52,7 +49,7 @@ export class AddContentComponent implements OnInit {
       image: new FormControl(null,
         {validators: [Validators.required]})
     });
-  }
+  } // End of ngOnInit
   FormSubmit() {
     if (!this.formValue.valid) {
       return;
@@ -68,7 +65,8 @@ export class AddContentComponent implements OnInit {
       this.contentService.updateContent(this.id,
         this.formValue.value.heading,
         this.formValue.value.description,
-        this.formValue.value.category);
+        this.formValue.value.category,
+        this.formValue.value.image);
       this.formValue.reset({category: 'Breakfast'});
     }
   }

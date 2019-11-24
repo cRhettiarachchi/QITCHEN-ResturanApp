@@ -56,18 +56,29 @@ getContent(id: string) {
     _id: string,
     heading: string,
     description: string,
-    category: string
+    category: string,
+    imagePath: string
   }>(this.getContentUrl + '/' + id);
 }
 
-updateContent(id: string, head: string, desc: string, cat: string) {
-  const updateContent = {
-    id: id,
-    heading: head,
-    description: desc,
-    category: cat
-  };
-  this.http.patch<{message: string}>(this.getContentUrl + '/' + id, updateContent)
+updateContent(id: string, head: string, desc: string, cat: string, imgPath: File | string) {
+  let contentData;
+  if (typeof(imgPath) === 'object') {
+    contentData = new FormData();
+    contentData.append('id', id);
+    contentData.append('heading', head);
+    contentData.append('description', desc);
+    contentData.append('image', imgPath);
+  } else {
+    contentData = {
+      id: id,
+      heading: head,
+      description: desc,
+      category: cat,
+      imagePath: imgPath
+    };
+  }
+  this.http.patch<{message: string}>(this.getContentUrl + '/' + id, contentData)
     .subscribe(value => {
       console.log('updated successfully');
     });
