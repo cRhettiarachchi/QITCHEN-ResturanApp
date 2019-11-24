@@ -1,8 +1,31 @@
 const express = require('express');
 const router = express.Router();
 const Contents = require('../models/contents');
+const multer = require('multer');
 
-// 2orBJk23OtCucTyp
+const MIME_TYPE = {
+  'image/png': 'png',
+  'image/jpeg': 'jpg',
+  'image/jpg': 'jpg'
+};
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    const isValid = MIME_TYPE[file.mimeType];
+    let error = new Error();
+    if (isValid) {
+      error = null;
+    } else {
+      error = 'wrong file type';
+    }
+    cb(null, "backend/images");
+  },
+  filename: (req, file, cb) => {
+    const name = file.originalname.toLowerCase().split(' ').join('-');
+    const ext = MIME_TYPE[file.mimetype];
+    cb(null, name + '-' + Date.now() + '.' + ext);
+  }
+});
 
 router.get('', (req, res, next) => {
   Contents.find()
@@ -14,7 +37,7 @@ router.get('', (req, res, next) => {
     })
 });
 
-router.post('', (req, res, next) => {
+router.post('', multer({storage: storage}).single("image"), (req, res, next) => {
   const content = new Contents({
     heading: req.body.heading,
     description: req.body.description,

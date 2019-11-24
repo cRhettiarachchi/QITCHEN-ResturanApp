@@ -49,7 +49,8 @@ export class AddContentComponent implements OnInit {
         {validators: [Validators.required, Validators.minLength(10)]
         }),
       category: new FormControl('Breakfast'),
-      image: new FormControl(null)
+      image: new FormControl(null,
+        {validators: [Validators.required]})
     });
   }
   FormSubmit() {
@@ -60,7 +61,8 @@ export class AddContentComponent implements OnInit {
       this.contentService.postvalues(
         this.formValue.value.heading,
         this.formValue.value.description,
-        this.formValue.value.category);
+        this.formValue.value.category,
+        this.formValue.value.image);
       this.formValue.reset({category: 'Breakfast'});
     } else {
       this.contentService.updateContent(this.id,
@@ -75,6 +77,7 @@ export class AddContentComponent implements OnInit {
     const file = (event.target as HTMLInputElement).files[0];
     this.formValue.patchValue({image: file});
     this.formValue.get('image').updateValueAndValidity();
+    console.log(this.formValue.value.image);
     const reader = new FileReader();
     reader.onload = () => {
       this.imagePreview = reader.result;

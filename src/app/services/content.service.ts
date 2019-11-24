@@ -28,15 +28,21 @@ getAllcontents() {
     }))
     .subscribe((gotContents) => {
       console.log(gotContents);
-    this.contents = gotContents;
-    this.contentSubject.next(this.contents);
+      this.contents = gotContents;
+      this.contentSubject.next(this.contents);
   });
 }
 
-postvalues(heading: string, description: string, category: string) {
-  const content: ContentModel = new ContentModel(heading, description, category);
-  this.http.post<{message: string, id: string}>(this.getContentUrl, content)
+postvalues(heading: string, description: string, category: string, file: File) {
+  const postData = new FormData();
+  postData.append('heading', heading);
+  postData.append('description', description);
+  postData.append('category', category);
+  postData.append('image', file, heading);
+  console.log(file);
+  this.http.post<{message: string, id: string}>(this.getContentUrl, postData)
     .subscribe(value => {
+      const content: ContentModel = new ContentModel(heading, description, category, file);
       content.id = value.id;
       this.contents.push(content);
       this.contentSubject.next([...this.contents]);
