@@ -22,7 +22,8 @@ getAllcontents() {
           heading: cont.heading,
           description: cont.description,
           category: cont.category,
-          id: cont._id
+          id: cont._id,
+          imagePath: cont.imagePath
         };
       });
     }))
@@ -40,10 +41,10 @@ postvalues(heading: string, description: string, category: string, file: File) {
   postData.append('category', category);
   postData.append('image', file, heading);
   console.log(file);
-  this.http.post<{message: string, id: string}>(this.getContentUrl, postData)
+  this.http.post<{message: string, contentValue: ContentModel}>(this.getContentUrl, postData)
     .subscribe(value => {
-      const content: ContentModel = new ContentModel(heading, description, category, file);
-      content.id = value.id;
+      const content: ContentModel = new ContentModel(heading, description, category, value.contentValue.imagePath);
+      content.id = value.contentValue.id;
       this.contents.push(content);
       this.contentSubject.next([...this.contents]);
       this.resultmessage = value.message;

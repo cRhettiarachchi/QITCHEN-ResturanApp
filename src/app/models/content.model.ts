@@ -3,12 +3,12 @@ export class ContentModel{
   heading: string;
   description: string;
   category: string;
-  file: File;
+  imagePath: string;
 
-  constructor(heading: string, desc: string, category: string, file){
+  constructor(heading: string, desc: string, category: string, imagePath: string) {
     this.heading = heading;
     this.description = desc;
     this.category = category;
-    this.file = file;
+    this.imagePath = imagePath;
   }
 }

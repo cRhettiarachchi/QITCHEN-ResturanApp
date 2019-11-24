@@ -11,14 +11,14 @@ const MIME_TYPE = {
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    const isValid = MIME_TYPE[file.mimeType];
+    const isValid = MIME_TYPE[file.mimetype];
     let error = new Error();
     if (isValid) {
       error = null;
     } else {
       error = 'wrong file type';
     }
-    cb(null, "backend/images");
+    cb(error, "backend/images");
   },
   filename: (req, file, cb) => {
     const name = file.originalname.toLowerCase().split(' ').join('-');
@@ -38,15 +38,24 @@ router.get('', (req, res, next) => {
 });
 
 router.post('', multer({storage: storage}).single("image"), (req, res, next) => {
+  const url = req.protocol + '://' + req.get('host');
   const content = new Contents({
     heading: req.body.heading,
     description: req.body.description,
-    category: req.body.category
+    category: req.body.category,
+    imagePath: url + '/images/' + req.file.filename
   });
   content.save().then((value) => {
+    console.log(value._id);
     res.status(200).json({
       message: "done",
-      id: value._id
+      contentValue: {
+        id: value._id,
+        heading: value.heading,
+        description: value.description,
+        category: value.category,
+        imagePath: value.imagePath
+      }
     });
   });
 });

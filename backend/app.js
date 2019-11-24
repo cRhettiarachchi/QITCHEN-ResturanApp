@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require('express');
 const bodyparser = require('body-parser');
 const mongoose = require('mongoose');
@@ -19,6 +20,7 @@ app.use(function(req, res, next) {
 });
 
 app.use(bodyparser.json());
+app.use("/images", express.static(path.join("backend/images")));
 
 app.use('/contents', router);
 
