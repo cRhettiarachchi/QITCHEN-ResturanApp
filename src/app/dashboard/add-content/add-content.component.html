@@ -6,11 +6,13 @@
     <div class="col-5 m-auto form">
       <h3>Your content matters!</h3>
       <p class = "input-description">Your first 30 letters are the most important because only those will be displayed on the main page. So, make them count!.</p>
-      <form [formGroup]="formValue" (submit)= "FormSubmit()">
+      <form [formGroup]="formValue" (submit)= "FormSubmit(formDirective)" #formDirective="ngForm">
+
         <mat-form-field>
           <input matInput placeholder="Enter Heading" formControlName="heading">
           <mat-error *ngIf="formValue.get('heading').invalid">Heading is too short</mat-error>
         </mat-form-field>
+
         <mat-form-field>
           <mat-select placeholder="Select me" formControlName="category">
             <mat-option value="Breakfast">Breakfast</mat-option>

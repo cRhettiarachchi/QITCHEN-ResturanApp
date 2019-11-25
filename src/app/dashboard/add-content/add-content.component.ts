@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormControl, FormGroup, FormGroupDirective, Validators} from '@angular/forms';
 import {ContentService} from '../../services/content.service';
 import {ActivatedRoute, ParamMap} from '@angular/router';
 import {ContentModel} from '../../models/content.model';
@@ -57,7 +57,7 @@ export class AddContentComponent implements OnInit {
         {validators: [Validators.required]})
     }); // end of defining the form
   } // End of ngOnInit
-  FormSubmit() {
+  FormSubmit(formDirective: FormGroupDirective) {
     this.formValue.markAsPristine();
     this.formValue.markAsUntouched();
     if (!this.formValue.valid) { // check if form is valid ( part of front end validation )
@@ -72,8 +72,7 @@ export class AddContentComponent implements OnInit {
         this.formValue.value.image).subscribe(value => {
           if (value.message === 'done') {
             this.formValue.reset({category: 'Breakfast'});
-            this.formValue.markAsPristine();
-            this.formValue.markAsUntouched();
+            formDirective.resetForm({category: 'Breakfast'});
             this.message = 'created';
             this.imagePreview = null;
           }
@@ -86,11 +85,12 @@ export class AddContentComponent implements OnInit {
         this.formValue.value.price,
         this.formValue.value.image).subscribe(value => {
           if (value.message === 'done') {
+            this.formValue.reset({category: 'Breakfast'});
+            formDirective.resetForm({category: 'Breakfast'});
             this.message = 'updated';
             this.imagePreview = null;
           }
-      })
-      this.formValue.reset({category: 'Breakfast'});
+      });
     }
   }
 

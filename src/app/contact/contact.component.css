@@ -2,11 +2,11 @@
   margin-top: 5%;
 }
 
+/*  border-bottom: 1px solid rgba(141, 141, 141, 0.51);
+*/
 .contact-form{
-  border-bottom: 1px solid rgba(141, 141, 141, 0.51);
   margin: 5% auto;
   text-align: center;
-  padding-bottom: 3%;
 }
 
 form{
@@ -24,4 +24,8 @@ form{
 
 .media-icon:hover{
   fill: #851de0;
+}
+
+mat-form-field{
+  width: 100%;
 }
