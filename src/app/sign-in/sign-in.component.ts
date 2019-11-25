@@ -7,6 +7,7 @@ import {ContentService} from '../services/content.service';
   styleUrls: ['./sign-in.component.css']
 })
 export class SignInComponent implements OnInit {
+  hide = true;
   constructor(private contentService: ContentService) { }
 
   ngOnInit() {

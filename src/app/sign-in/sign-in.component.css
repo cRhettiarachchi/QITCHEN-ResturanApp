@@ -7,6 +7,11 @@
   top: -1000px !important;
 }
 
-.form{
+form{
   margin-top: 26%;
+}
+
+mat-form-field{
+  display: block;
+  width: 80%;
 }

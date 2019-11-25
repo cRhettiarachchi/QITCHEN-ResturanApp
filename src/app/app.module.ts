@@ -27,7 +27,7 @@ import { ContentComponent } from './landing-page/content/content.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   MatButtonModule, MatCardModule, MatExpansionModule,
-  MatFormFieldModule,
+  MatFormFieldModule, MatIconModule,
   MatInputModule,
   MatPaginatorModule,
   MatSelectModule,
@@ -71,7 +71,8 @@ import {
     MatInputModule,
     MatSelectModule,
     MatCardModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
