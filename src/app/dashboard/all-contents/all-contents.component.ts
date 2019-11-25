@@ -13,6 +13,7 @@ export class AllContentsComponent implements OnInit {
   pageSize = 5;
   total: 10;
   pageIndex = 1;
+  panelOpenState = false;
 
   constructor(private contentService: ContentService) { }
 
