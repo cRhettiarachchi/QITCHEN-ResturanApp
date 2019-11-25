@@ -25,7 +25,14 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { ContentComponent } from './landing-page/content/content.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatButtonModule, MatPaginatorModule, MatSidenavModule} from '@angular/material';
+import {
+  MatButtonModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatPaginatorModule,
+  MatSelectModule,
+  MatSidenavModule
+} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -59,7 +66,10 @@ import {MatButtonModule, MatPaginatorModule, MatSidenavModule} from '@angular/ma
     BrowserAnimationsModule,
     MatPaginatorModule,
     MatButtonModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

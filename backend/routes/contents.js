@@ -53,6 +53,7 @@ router.post('', multer({storage: storage}).single("image"), (req, res, next) => 
     heading: req.body.heading,
     description: req.body.description,
     category: req.body.category,
+    price: +req.body.price,
     imagePath: url + '/images/' + req.file.filename
   });
   content.save().then((value) => {
@@ -92,6 +93,7 @@ router.patch('/:id', multer({storage: storage}).single("image"), (req, res, next
     heading: req.body.heading,
     description: req.body.description,
     category: req.body.category,
+    price: +req.body.price,
     imagePath: imgPath
   };
   Contents.updateOne({_id: req.params.id}, updateContent).then(value => {

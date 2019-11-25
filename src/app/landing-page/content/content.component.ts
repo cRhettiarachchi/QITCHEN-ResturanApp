@@ -22,6 +22,7 @@ export class ContentComponent implements OnInit {
             heading: value.heading,
             description: value.description,
             category: value.category,
+            price: value.price,
             imagePath: value.imagePath
           };
         });

@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ContentService} from '../../services/content.service';
 import {ActivatedRoute, ParamMap} from '@angular/router';
 import {ContentModel} from '../../models/content.model';
+import {group} from '@angular/animations';
 
 @Component({
   selector: 'app-add-content',
@@ -33,6 +34,7 @@ export class AddContentComponent implements OnInit {
           this.formValue.patchValue({description: value.description});
           this.formValue.patchValue({category: value.category});
           this.formValue.patchValue({image: value.imagePath});
+          this.formValue.patchValue({price: value.price});
         });
       } else {
         this.type = 'create';
@@ -48,11 +50,16 @@ export class AddContentComponent implements OnInit {
         {validators: [Validators.required, Validators.minLength(10)]
         }),
       category: new FormControl('Breakfast'),
+      price: new FormControl( null,
+        {validators: [Validators.required]
+        }),
       image: new FormControl(null,
         {validators: [Validators.required]})
     }); // end of defining the form
   } // End of ngOnInit
   FormSubmit() {
+    this.formValue.markAsPristine();
+    this.formValue.markAsUntouched();
     if (!this.formValue.valid) { // check if form is valid ( part of front end validation )
       return;
     }
@@ -61,9 +68,12 @@ export class AddContentComponent implements OnInit {
         this.formValue.value.heading,
         this.formValue.value.description,
         this.formValue.value.category,
+        this.formValue.value.price,
         this.formValue.value.image).subscribe(value => {
           if (value.message === 'done') {
             this.formValue.reset({category: 'Breakfast'});
+            this.formValue.markAsPristine();
+            this.formValue.markAsUntouched();
             this.message = 'created';
             this.imagePreview = null;
           }
@@ -73,8 +83,9 @@ export class AddContentComponent implements OnInit {
         this.formValue.value.heading,
         this.formValue.value.description,
         this.formValue.value.category,
+        this.formValue.value.price,
         this.formValue.value.image).subscribe(value => {
-          if(value.message === 'done'){
+          if (value.message === 'done') {
             this.message = 'updated';
             this.imagePreview = null;
           }

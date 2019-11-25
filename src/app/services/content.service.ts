@@ -25,6 +25,7 @@ getAllcontents(pageSize: number, pageIndex: number) {
           description: cont.description,
           category: cont.category,
           id: cont._id,
+          price: cont.price,
           imagePath: cont.imagePath
         };
       });
@@ -36,11 +37,12 @@ getAllcontents(pageSize: number, pageIndex: number) {
   });
 }
 
-postvalues(heading: string, description: string, category: string, file: File) {
+postvalues(heading: string, description: string, category: string, price: number, file: File) {
   const postData = new FormData();
   postData.append('heading', heading);
   postData.append('description', description);
   postData.append('category', category);
+  postData.append('price', ((price as unknown) as string));
   postData.append('image', file, heading);
   console.log(file);
   return this.http.post<{message: string, contentValue: ContentModel}>(this.getContentUrl, postData);
@@ -52,17 +54,19 @@ getContent(id: string) {
     heading: string,
     description: string,
     category: string,
+    price: number,
     imagePath: string
   }>(this.getContentUrl + '/' + id);
 }
 
-updateContent(id: string, head: string, desc: string, cat: string, imgPath: File | string) {
+updateContent(id: string, head: string, desc: string, cat: string, price: number, imgPath: File | string) {
   let contentData;
   if (typeof(imgPath) === 'object') {
     contentData = new FormData();
     contentData.append('id', id);
     contentData.append('heading', head);
     contentData.append('description', desc);
+    contentData.append('price', ((price as unknown) as string));
     contentData.append('image', imgPath);
   } else {
     contentData = {
