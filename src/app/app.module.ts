@@ -25,7 +25,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { ContentComponent } from './landing-page/content/content.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatPaginatorModule} from '@angular/material';
+import { MatButtonModule, MatPaginatorModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -57,7 +57,8 @@ import {MatPaginatorModule} from '@angular/material';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -38,7 +38,7 @@
         <div class = "file-picker-div">
           <div class="row">
             <div class="col-6">
-              <button type = "button" class = "btn btn-primary file-button" (click)="filePicker.click()">Select image</button>
+              <button type = "button" mat-stroked-button color="primary" (click)="filePicker.click()">Select image</button>
               <input type="file" class = "file-picker" #filePicker (change)="onImagePick($event)">
               <p class = "form-error" *ngIf="formValue.get('image').invalid">
             </div>
@@ -49,10 +49,10 @@
         </div>
         <p class = "success" *ngIf="message === 'created'">Content Added</p>
         <p class = "success" *ngIf="message === 'updated'">Content Updated</p>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" mat-raised-button color="primary">Submit</button>
       </form>
     </div>
   </div>
 </div>
-
+<!--class = "btn btn-primary file-button"-->
 <!--id="exampleInputEmail1" aria-describedby="emailHelp"-->
