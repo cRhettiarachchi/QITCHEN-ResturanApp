@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ContentService} from '../../services/content.service';
 import {ContentModel} from '../../models/content.model';
+import {PageEvent} from '@angular/material';
 
 @Component({
   selector: 'app-all-contents',
@@ -9,6 +10,8 @@ import {ContentModel} from '../../models/content.model';
 })
 export class AllContentsComponent implements OnInit {
   allContents: ContentModel[] = [];
+  pageSize = 5;
+  total = 10;
 
   constructor(private contentService: ContentService) { }
 
@@ -22,6 +25,10 @@ export class AllContentsComponent implements OnInit {
 
   onDelete(id: string) {
     this.contentService.deleteContent(id);
+  }
+
+  onPageChange(event: PageEvent) {
+    console.log(event);
   }
 
 }

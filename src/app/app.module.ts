@@ -24,6 +24,8 @@ import { ViewContactUsComponent } from './dashboard/view-contact-us/view-contact
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { ContentComponent } from './landing-page/content/content.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatPaginatorModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -53,7 +55,9 @@ import { ContentComponent } from './landing-page/content/content.component';
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]
