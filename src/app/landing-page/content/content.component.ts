@@ -10,13 +10,12 @@ import {ActivatedRoute, ParamMap} from '@angular/router';
 })
 export class ContentComponent implements OnInit {
 
-
   content: ContentModel;
   constructor(private contentService: ContentService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
-      if(paramMap.has('id')) {
+      if (paramMap.has('id')) {
         this.contentService.getContent(paramMap.get('id')).subscribe(value => {
           this.content = {
             id: value._id,

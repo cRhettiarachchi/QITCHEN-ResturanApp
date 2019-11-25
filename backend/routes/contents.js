@@ -29,7 +29,15 @@ const storage = multer.diskStorage({
 
 // Get method to get all the content
 router.get('', (req, res, next) => {
-  Contents.find()
+  let pageSize = +req.query.pagesize;
+  let pageIndex = +req.query.pageindex;
+  const contentFind = Contents.find();
+  // if(pageSize & pageIndex) {
+    console.log(pageSize + ' ' + pageIndex);
+    contentFind
+      .limit(pageSize).skip(pageSize * (pageIndex - 1));
+  // }
+  contentFind
     .then((documents) => {
       res.json({
         message: 'good',

@@ -13,8 +13,10 @@ export class ContentService {
 
   private getContentUrl = 'http://localhost:8080/contents';
 
-getAllcontents() {
-  this.http.get<{message: string, contents: any}>(this.getContentUrl)
+getAllcontents(pageSize: number, pageIndex: number) {
+  let queries = `?pagesize=${pageSize}&pageindex=${pageIndex}`;
+  console.log(queries);
+  this.http.get<{message: string, contents: any}>(this.getContentUrl + '/' + queries)
     .pipe(map((contentsData) => {
       return contentsData.contents.map(cont => {
         console.log(cont.heading);
