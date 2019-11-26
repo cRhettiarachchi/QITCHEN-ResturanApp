@@ -1,0 +1,21 @@
+.sign-in-section{
+  margin-top: 5%;
+}
+
+.image{
+  width: 80%;
+  top: -1000px !important;
+}
+
+form{
+  margin-top: 26%;
+}
+
+mat-form-field{
+  display: block;
+  width: 80%;
+}
+
+.register-link{
+  margin-left: 3%;
+}

@@ -33,6 +33,8 @@ import {
   MatSelectModule,
   MatSidenavModule, MatToolbarModule
 } from '@angular/material';
+import { LoginComponent } from './sign-in/login/login.component';
+import { RegisterComponent } from './sign-in/register/register.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +57,9 @@ import {
     AddContentComponent,
     ViewAboutUsComponent,
     ViewContactUsComponent,
-    ContentComponent
+    ContentComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

@@ -16,6 +16,8 @@ import {AddContentComponent} from './dashboard/add-content/add-content.component
 import {ViewAboutUsComponent} from './dashboard/view-about-us/view-about-us.component';
 import {ViewContactUsComponent} from './dashboard/view-contact-us/view-contact-us.component';
 import {ContentComponent} from './landing-page/content/content.component';
+import {LoginComponent} from './sign-in/login/login.component';
+import {RegisterComponent} from './sign-in/register/register.component';
 
 
 const routes: Routes = [
@@ -33,7 +35,11 @@ const routes: Routes = [
   },
   {path: 'about-us', component: AboutUsComponent},
   {path: 'contact', component: ContactComponent},
-  {path: 'sign-in', component: SignInComponent},
+  {path: 'user', component: SignInComponent,
+  children: [
+    {path: 'sign-in', component: LoginComponent},
+    {path: 'register', component: RegisterComponent}
+  ]},
   {path: 'content/:id', component: ContentComponent},
   {path: 'dashboard',
     component: DashboardComponent,
