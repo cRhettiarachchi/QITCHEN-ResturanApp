@@ -3,9 +3,10 @@ const express = require('express');
 const bodyparser = require('body-parser');
 const mongoose = require('mongoose');
 const router = require('./routes/contents');
+const userRouter = require('./routes/users');
 const app = express();
 
-mongoose.connect("mongodb+srv://Charith:K7ulBusW5xqve3y0@cluster0-ow00d.mongodb.net/BudgetDB?retryWrites=true&w=majority", {useNewUrlParser: true,  useUnifiedTopology: true})
+mongoose.connect("mongodb+srv://Charith:K7ulBusW5xqve3y0@cluster0-ow00d.mongodb.net/BudgetDB", {useNewUrlParser: true,  useUnifiedTopology: true})
   .then(() => {
     console.log('connected successful');
   }).catch(() => {
@@ -23,5 +24,6 @@ app.use(bodyparser.json());
 app.use("/images", express.static(path.join("backend/images")));
 
 app.use('/contents', router);
+app.use('/users', userRouter);
 
 module.exports = app;

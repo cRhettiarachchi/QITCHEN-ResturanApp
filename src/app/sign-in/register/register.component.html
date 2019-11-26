@@ -17,7 +17,7 @@
     <mat-error *ngIf="password.invalid">Enter valid password</mat-error>
   </mat-form-field>
   <mat-form-field>
-    <input (blur)="onChange(password.value, cPassword.value)" name = "cPassword" #cPassword = "ngModel" ngModel matInput placeholder="Confirm password" [type]="cHide ? 'password' : 'text'" required minlength="8">
+    <input name = "cPassword" #cPassword = "ngModel" ngModel matInput placeholder="Confirm password" [type]="cHide ? 'password' : 'text'" required minlength="8">
     <button mat-icon-button matSuffix (click)="cHide = !cHide" [attr.aria-label]="'Hide password'"
             [attr.aria-pressed]="cHide">
       <mat-icon>{{cHide ? 'visibility_off' : 'visibility'}}</mat-icon>
