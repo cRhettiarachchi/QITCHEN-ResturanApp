@@ -1,26 +1,31 @@
-<form>
+<form (submit)="onSubmit(registerForm)" #registerForm="ngForm">
   <mat-form-field>
-    <input matInput placeholder="Enter your email">
+    <input name = "email" type = "email" ngModel #email = "ngModel" matInput placeholder="Enter your email" required email>
+    <mat-error *ngIf="email.invalid">Enter valid email</mat-error>
+  </mat-form-field>
+  ̵
+  <mat-form-field>
+    <input name = "name" ngModel #name = "ngModel" matInput placeholder="Enter your Name">
     <!--              <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>-->
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput placeholder="Enter your Name">
-    <!--              <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>-->
-  </mat-form-field>
-
-  <mat-form-field>
-    <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'">
-    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+    <input name = "password" #password = "ngModel" ngModel matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" required minlength="8">
+    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide">
       <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
     </button>
+    <mat-error *ngIf="password.invalid">Enter valid password</mat-error>
   </mat-form-field>
   <mat-form-field>
-    <input matInput placeholder="Confirm password" [type]="hide ? 'password' : 'text'">
-    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    <input (blur)="onChange(password.value, cPassword.value)" name = "cPassword" #cPassword = "ngModel" ngModel matInput placeholder="Confirm password" [type]="cHide ? 'password' : 'text'" required minlength="8">
+    <button mat-icon-button matSuffix (click)="cHide = !cHide" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="cHide">
+      <mat-icon>{{cHide ? 'visibility_off' : 'visibility'}}</mat-icon>
     </button>
+    <mat-error *ngIf="cPassword.invalid">Enter valid password</mat-error>
+    <mat-error *ngIf="cPassword.value !== password.value && cPassword.valid">The two passwords should match</mat-error>
   </mat-form-field>
-  <button routerLink="/dashboard" mat-raised-button color="primary">Login In</button>
-  <a class = "register-link" routerLink="/user/sign-in">Already have an account </a>
+  <button type = "submit" mat-raised-button color="primary">Login In</button>
+  <a class="register-link" routerLink="/user/sign-in">Already have an account </a>
 </form>
