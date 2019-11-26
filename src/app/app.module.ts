@@ -31,7 +31,7 @@ import {
   MatInputModule,
   MatPaginatorModule,
   MatSelectModule,
-  MatSidenavModule
+  MatSidenavModule, MatToolbarModule
 } from '@angular/material';
 
 @NgModule({
@@ -72,7 +72,8 @@ import {
     MatSelectModule,
     MatCardModule,
     MatExpansionModule,
-    MatIconModule
+    MatIconModule,
+    MatToolbarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

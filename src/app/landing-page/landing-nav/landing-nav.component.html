@@ -1,24 +1,35 @@
-<nav class="navbar navbar-expand-lg navbar-dark navigation">
-  <a class="navbar-brand" href="#"><img class = "logoImg" alt = "logo" src = "assets/img/Qichen-white.png">QITCHEN</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item" routerLinkActive="active"
-      [routerLinkActiveOptions]="{exact: true}">
-        <a class="nav-link" routerLink="/">Home <span class="sr-only"></span></a>
-      </li>
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" routerLink="/about-us">About us</a>
-      </li>
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" routerLink="/contact">Contact</a>
-      </li>
-      <li class = "nav-tem" routerLinkActive="active">
-        <a class = "nav-link" routerLink="/sign-in">Sign in</a>
-      </li>
+<mat-toolbar>
+  <mat-toolbar-row>
+    <span><img class = "logoImg" alt = "logo" src = "assets/img/Qichen-white.png">QITCHEN</span>
 
-    </ul>
-  </div>
-</nav>
+    <span class="example-spacer"></span>
+    <button mat-button href="#/about" routerLinkActive="using" [routerLinkActiveOptions]="{exact: true}" routerLink="/">Home</button>
+    <button mat-button href="#/contact" routerLinkActive="using" routerLink="/about-us">About us</button>
+    <button mat-button href="#/login" routerLinkActive="using" routerLink="/contact">Contact</button>
+    <button mat-button href="#/login" routerLinkActive="using" routerLink="/sign-in">Sign in</button>
+  </mat-toolbar-row>
+
+<!--<nav class="navbar navbar-expand-lg navbar-dark navigation">-->
+<!--  <a class="navbar-brand" href="#"><img class = "logoImg" alt = "logo" src = "assets/img/Qichen-white.png">QITCHEN</a>-->
+<!--  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--    <span class="navbar-toggler-icon"></span>-->
+<!--  </button>-->
+<!--  <div class="collapse navbar-collapse" id="navbarNav">-->
+<!--    <ul class="navbar-nav mr-auto">-->
+<!--      <li class="nav-item" routerLinkActive="active"-->
+<!--      [routerLinkActiveOptions]="{exact: true}">-->
+<!--        <a class="nav-link" routerLink="/">Home <span class="sr-only"></span></a>-->
+<!--      </li>-->
+<!--      <li class="nav-item" routerLinkActive="active">-->
+<!--        <a class="nav-link" routerLink="/about-us">About us</a>-->
+<!--      </li>-->
+<!--      <li class="nav-item" routerLinkActive="active">-->
+<!--        <a class="nav-link" routerLink="/contact">Contact</a>-->
+<!--      </li>-->
+<!--      <li class = "nav-tem" routerLinkActive="active">-->
+<!--        <a class = "nav-link" routerLink="/sign-in">Sign in</a>-->
+<!--      </li>-->
+
+<!--    </ul>-->
+<!--  </div>-->
+<!--</nav>-->
