@@ -9,8 +9,6 @@ import {NgForm, NgModel} from '@angular/forms';
 export class RegisterComponent implements OnInit {
   hide = true;
   cHide = true;
-  pass: string;
-  confirmPass: string;
 
   constructor() { }
 
@@ -18,16 +16,11 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    if(form.invalid) {
+    if(form.invalid || form.value.password !== form.value.cPassword) {
       return;
     }
-    console.log(form);
+    console.log(form.value.email);
   }
 
-  onChange(pass: string, cPass: string) {
-    this.pass = pass;
-    this.confirmPass = cPass;
-    console.log(pass);
-  }
 
 }

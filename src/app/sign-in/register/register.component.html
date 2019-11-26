@@ -3,7 +3,6 @@
     <input name = "email" type = "email" ngModel #email = "ngModel" matInput placeholder="Enter your email" required email>
     <mat-error *ngIf="email.invalid">Enter valid email</mat-error>
   </mat-form-field>
-  ̵
   <mat-form-field>
     <input name = "name" ngModel #name = "ngModel" matInput placeholder="Enter your Name">
     <!--              <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>-->
@@ -23,9 +22,12 @@
             [attr.aria-pressed]="cHide">
       <mat-icon>{{cHide ? 'visibility_off' : 'visibility'}}</mat-icon>
     </button>
-    <mat-error *ngIf="cPassword.invalid">Enter valid password</mat-error>
-    <mat-error *ngIf="cPassword.value !== password.value && cPassword.valid">The two passwords should match</mat-error>
+    <mat-error *ngIf="cPassword.invalid">Password must have 8 characters</mat-error>
+    <!--    <mat-error *ngIf="cPassword.value === password.value">The two passwords should match</mat-error>-->
   </mat-form-field>
+  <mat-error *ngIf="cPassword.valid && password.valid"><span *ngIf="cPassword.value !== password.value">
+    Passwords Do not match
+  </span></mat-error>
   <button type = "submit" mat-raised-button color="primary">Login In</button>
   <a class="register-link" routerLink="/user/sign-in">Already have an account </a>
 </form>
