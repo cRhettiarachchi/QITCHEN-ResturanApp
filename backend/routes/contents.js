@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Contents = require('../models/contents');
+const checkAuth = require('../middleware/check-auth');
 const multer = require('multer');
 
 const MIME_TYPE = {
@@ -47,7 +48,7 @@ router.get('', (req, res, next) => {
 });
 
 // Post method to create new content
-router.post('', multer({storage: storage}).single("image"), (req, res, next) => {
+router.post('',checkAuth, multer({storage: storage}).single("image"), (req, res, next) => {
   const url = req.protocol + '://' + req.get('host');
   const content = new Contents({
     heading: req.body.heading,
@@ -71,7 +72,7 @@ router.post('', multer({storage: storage}).single("image"), (req, res, next) => 
   });
 });
 
-router.delete('/:id', (req, res, next) => {
+router.delete('/:id',checkAuth, (req, res, next) => {
   console.log('delete mehtod called');
   Contents.deleteOne({_id: req.params.id}).then(value => {
     console.log('deletion is done');
@@ -81,7 +82,7 @@ router.delete('/:id', (req, res, next) => {
   })
 });
 
-router.patch('/:id', multer({storage: storage}).single("image"), (req, res, next) => {
+router.patch('/:id',checkAuth, multer({storage: storage}).single("image"), (req, res, next) => {
   let imgPath;
   if (req.file){
     const url = req.protocol + '://' + req.get('host');

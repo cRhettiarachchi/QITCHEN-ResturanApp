@@ -22,7 +22,7 @@ import { AddContentComponent } from './dashboard/add-content/add-content.compone
 import { ViewAboutUsComponent } from './dashboard/view-about-us/view-about-us.component';
 import { ViewContactUsComponent } from './dashboard/view-contact-us/view-contact-us.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { ContentComponent } from './landing-page/content/content.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
@@ -35,6 +35,7 @@ import {
 } from '@angular/material';
 import { LoginComponent } from './sign-in/login/login.component';
 import { RegisterComponent } from './sign-in/register/register.component';
+import {AuthInterceptor} from './sign-in/auth-interceptor';
 
 @NgModule({
   declarations: [
@@ -79,7 +80,7 @@ import { RegisterComponent } from './sign-in/register/register.component';
     MatIconModule,
     MatToolbarModule,
   ],
-  providers: [],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
