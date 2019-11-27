@@ -12,6 +12,7 @@ export class AuthService {
   private token: string;
   private message = new Subject<string>();
   private authStatus: boolean;
+  private ExpirationTimer: any;
   private isAuthenticated = new Subject<boolean>();
 
   constructor(private http: HttpClient, private router: Router) { }
@@ -38,21 +39,58 @@ export class AuthService {
 
   login(email: string, password: string) {
     const loginDetails = {email, password};
-    this.http.post<{message: string, token: string}>(this.userUrl + 'login', loginDetails).subscribe(value => {
+    this.http.post<{message: string, token: string, expiresIn: number}>(this.userUrl + 'login', loginDetails).subscribe(value => {
       this.token = value.token;
       this.message.next(value.message);
       if (this.token) {
+        const expirationDuration = value.expiresIn;
+        this.ExpirationTimer = setTimeout(() => {
+          this.logout();
+        }, expirationDuration * 1000);
         this.authStatus = true;
         this.isAuthenticated.next(true);
+        const now = new Date();
+        const expDate = new Date(now.getTime() + expirationDuration * 1000);
+        console.log(expDate);
+        this.saveAuthData(this.token);
         this.router.navigate(['/dashboard']).then(r => {});
       }
     });
+  }
+
+  autoAuthUser() {
+    let token = this.authData();
+    console.log(this.token);
+    if(token) {
+      this.token = token;
+      this.authStatus = true;
+      this.isAuthenticated.next(true);
+    }
   }
 
   logout() {
     this.token = null;
     this.authStatus = false;
     this.isAuthenticated.next(false);
+    clearTimeout(this.ExpirationTimer);
+    this.clearAuthData();
     this.router.navigate(['']).then(r => {});
+  }
+
+  private saveAuthData(token: string) {
+    localStorage.setItem('token', token);
+  }
+
+  private clearAuthData() {
+    localStorage.removeItem('token');
+  }
+
+  private authData() {
+    let token = localStorage.getItem('token');
+    if (!token) {
+      console.log('this is null : ' + token);
+      return;
+    }
+    return token;
   }
 }

@@ -14,6 +14,7 @@ export class LandingNavComponent implements OnInit, OnDestroy {
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
+    this.isAuthenticated = this.authService.getAuthStatus();
     this.authSubscription = this.authService.getAthentcatedStatus().subscribe(status => {
         this.isAuthenticated = status;
       }

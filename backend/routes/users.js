@@ -51,10 +51,11 @@ router.post('/login', (req, res, next) => {
       id: updatedUser._id,
       name: updatedUser.name
     }, 'This-is-The-One-used-to-Enqript-this-code',
-      {expiresIn: '1h'});
+      {expiresIn: '23h'});
     res.json({
       message: 'successfully-Authenticated',
-      token: token
+      token: token,
+      expiresIn: 86400
     });
   }).catch(err => {
     console.log('Final error');
