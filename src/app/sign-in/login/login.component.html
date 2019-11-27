@@ -1,15 +1,21 @@
-<form>
+<form (submit)="onSubmit(LoginForm)" #LoginForm="ngForm">
   <mat-form-field>
-    <input matInput placeholder="Enter your email">
-    <!--              <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>-->
+    <input ngModel name="email" #email="ngModel" type="email" matInput placeholder="Enter your email" required email>
+    <mat-error *ngIf="email.invalid">Enter valid email</mat-error>
   </mat-form-field>
+  <mat-error *ngIf="msg === 'wrong-email'">Please check the email</mat-error>
 
   <mat-form-field>
-    <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'">
-    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+    <input name = "password" ngModel="" #password = "ngModel" matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" required minlength="8">
+    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide">
       <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
     </button>
+    <mat-error *ngIf="password.invalid">Enter Valid Password</mat-error>
   </mat-form-field>
-  <button routerLink="/dashboard" mat-raised-button color="primary">Login In</button>
-  <a class = "register-link" routerLink="/user/register">Need an account? </a>
+  <mat-error *ngIf="msg === 'wrong-password'">Please check the password</mat-error>
+  <button type = "submit" mat-raised-button color="primary">Login In</button>
+  <a class="register-link" routerLink="/user/register">Need an account? </a>
 </form>
+
+<!--routerLink="/dashboard"-->

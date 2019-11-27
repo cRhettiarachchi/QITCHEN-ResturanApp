@@ -20,4 +20,8 @@ export class AuthService {
       console.log(value);
     });
   }
+  login(email: string, password: string) {
+    const loginDetails = {email, password};
+    return this.http.post<{message: string, token: string}>(this.userUrl + 'login', loginDetails);
+  }
 }
