@@ -18,6 +18,7 @@ import {ViewContactUsComponent} from './dashboard/view-contact-us/view-contact-u
 import {ContentComponent} from './landing-page/content/content.component';
 import {LoginComponent} from './sign-in/login/login.component';
 import {RegisterComponent} from './sign-in/register/register.component';
+import {AuthGuard} from './sign-in/auth.guard';
 
 
 const routes: Routes = [
@@ -49,11 +50,12 @@ const routes: Routes = [
       {path: 'edit/:id', component: AddContentComponent},
       {path: 'view-about-us', component: ViewAboutUsComponent},
       {path: 'view-contact-us', component: ViewContactUsComponent}
-    ]}
+    ], canActivate: [AuthGuard]}
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [AuthGuard]
 })
 export class AppRoutingModule { }
