@@ -22,7 +22,6 @@ export class LandingContentComponent implements OnInit {
     this.contentService.contentAsObservable().subscribe((content) => {
       this.contents = content;
     });
-    // console.log(this.contents);
   }
 
   onPageChange(event: PageEvent) {
@@ -30,6 +29,5 @@ export class LandingContentComponent implements OnInit {
     console.log('---------------------' + this.pageIndex);
     this.contentService.getAllcontents(this.pageSize, this.pageIndex);
   }
-
 
 }

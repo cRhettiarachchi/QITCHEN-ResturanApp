@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {AuthDataModel} from './auth-data.model';
 import {Router} from '@angular/router';
 import {Observable, Subject} from 'rxjs';
+import {UserModel} from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,7 @@ export class AuthService {
   private message = new Subject<string>();
   private authStatus: boolean;
   private ExpirationTimer: any;
+  private user: UserModel;
   private isAuthenticated = new Subject<boolean>();
 
   constructor(private http: HttpClient, private router: Router) { }
@@ -39,8 +41,11 @@ export class AuthService {
 
   login(email: string, password: string) {
     const loginDetails = {email, password};
-    this.http.post<{message: string, token: string, expiresIn: number}>(this.userUrl + 'login', loginDetails).subscribe(value => {
+    // tslint:disable-next-line:max-line-length
+    this.http.post<{message: string, token: string, expiresIn: number, user: UserModel}>(this.userUrl + 'login', loginDetails).subscribe(value => {
       this.token = value.token;
+      this.user = value.user;
+      console.log(this.user);
       this.message.next(value.message);
       if (this.token) {
         const expirationDuration = value.expiresIn;
@@ -51,18 +56,17 @@ export class AuthService {
         this.isAuthenticated.next(true);
         const now = new Date();
         const expDate = new Date(now.getTime() + expirationDuration * 1000);
-        console.log(expDate);
-        this.saveAuthData(this.token);
+        this.saveAuthData(this.token, this.user);
         this.router.navigate(['/dashboard']).then(r => {});
       }
     });
   }
 
   autoAuthUser() {
-    let token = this.authData();
-    console.log(this.token);
-    if(token) {
-      this.token = token;
+    const value = this.authData();
+    if (value) {
+      this.token = value.token;
+      this.user = value.user;
       this.authStatus = true;
       this.isAuthenticated.next(true);
     }
@@ -70,6 +74,7 @@ export class AuthService {
 
   logout() {
     this.token = null;
+    this.user = null;
     this.authStatus = false;
     this.isAuthenticated.next(false);
     clearTimeout(this.ExpirationTimer);
@@ -77,20 +82,32 @@ export class AuthService {
     this.router.navigate(['']).then(r => {});
   }
 
-  private saveAuthData(token: string) {
+  private saveAuthData(token: string, user: UserModel) {
+    console.log(user);
     localStorage.setItem('token', token);
+    localStorage.setItem('email', user.email);
+    localStorage.setItem('id', user.id);
+    localStorage.setItem('type', user.type);
+    localStorage.setItem('name', user.name);
   }
 
   private clearAuthData() {
     localStorage.removeItem('token');
+    localStorage.removeItem('email');
+    localStorage.removeItem('id');
+    localStorage.removeItem('type');
+    localStorage.removeItem('name');
   }
 
   private authData() {
-    let token = localStorage.getItem('token');
+    const token = localStorage.getItem('token');
+    const email = localStorage.getItem('email');
+    const id = localStorage.getItem('id');
+    const name = localStorage.getItem('name');
+    const type = localStorage.getItem('type');
     if (!token) {
-      console.log('this is null : ' + token);
       return;
     }
-    return token;
+    return {token, user: {email, id, name, type}};
   }
 }

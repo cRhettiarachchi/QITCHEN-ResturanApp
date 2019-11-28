@@ -49,13 +49,15 @@ router.post('/login', (req, res, next) => {
     const token = jwt.sign({
       email: updatedUser.email,
       id: updatedUser._id,
-      name: updatedUser.name
+      name: updatedUser.name,
+      type: updatedUser.type
     }, 'This-is-The-One-used-to-Enqript-this-code',
       {expiresIn: '23h'});
     res.json({
       message: 'successfully-Authenticated',
       token: token,
-      expiresIn: 86400
+      expiresIn: 86400,
+      user: {email: updatedUser.email, name: updatedUser.name, type: updatedUser.type, id: updatedUser._id}
     });
   }).catch(err => {
     console.log('Final error');
@@ -64,5 +66,11 @@ router.post('/login', (req, res, next) => {
     });
   });
 });
+
+// router.delete('/delete/:email', (req, res, next) => {
+//   User.deleteOne({email: req.params.email}).then((result) => {
+//     console.log(result);
+//   })
+// });
 
 module.exports = router;

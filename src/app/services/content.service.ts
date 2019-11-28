@@ -86,6 +86,7 @@ deleteContent(id: string) {
     this.contentSubject.next([...this.contents]);
   });
 }
+
 contentAsObservable(): Observable<ContentModel[]> {
   return this.contentSubject.asObservable();
 }

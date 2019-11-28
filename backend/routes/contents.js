@@ -73,9 +73,7 @@ router.post('',checkAuth, multer({storage: storage}).single("image"), (req, res,
 });
 
 router.delete('/:id',checkAuth, (req, res, next) => {
-  console.log('delete mehtod called');
   Contents.deleteOne({_id: req.params.id}).then(value => {
-    console.log('deletion is done');
     res.json({
       message: 'done'
     })
