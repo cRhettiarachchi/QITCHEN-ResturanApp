@@ -7,5 +7,6 @@
     <button mat-button routerLinkActive="using" routerLink="/about-us">About us</button>
     <button mat-button routerLinkActive="using" routerLink="/contact">Contact</button>
     <button mat-button *ngIf="!isAuthenticated" routerLinkActive="using" routerLink="/user/sign-in">Sign in</button>
+    <button mat-button routerLinkActive="using" routerLink="/dashboard" *ngIf="type === 'admin'">Dashboard</button>
     <button mat-button (click)="onLogout()" *ngIf="isAuthenticated">Logout</button>
   </mat-toolbar-row>

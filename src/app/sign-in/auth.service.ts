@@ -84,6 +84,7 @@ export class AuthService {
   logout() {
     this.token = null;
     this.user = null;
+    this.userSubject.next(null);
     this.authStatus = false;
     this.isAuthenticated.next(false);
     clearTimeout(this.ExpirationTimer);
