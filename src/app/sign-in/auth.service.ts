@@ -12,6 +12,7 @@ export class AuthService {
   private userUrl = 'http://localhost:8080/users/';
   private token: string;
   private message = new Subject<string>();
+  private userSubject = new Subject<UserModel>();
   private authStatus: boolean;
   private ExpirationTimer: any;
   private user: UserModel;
@@ -39,13 +40,19 @@ export class AuthService {
     return this.authStatus;
   }
 
+  getUser() {
+    return this.user;
+  }
+
+  getUserSubject() {
+    return this.userSubject.asObservable();
+  }
+
   login(email: string, password: string) {
     const loginDetails = {email, password};
     // tslint:disable-next-line:max-line-length
     this.http.post<{message: string, token: string, expiresIn: number, user: UserModel}>(this.userUrl + 'login', loginDetails).subscribe(value => {
       this.token = value.token;
-      this.user = value.user;
-      console.log(this.user);
       this.message.next(value.message);
       if (this.token) {
         const expirationDuration = value.expiresIn;
@@ -54,6 +61,8 @@ export class AuthService {
         }, expirationDuration * 1000);
         this.authStatus = true;
         this.isAuthenticated.next(true);
+        this.user = value.user;
+        this.userSubject.next(value.user);
         const now = new Date();
         const expDate = new Date(now.getTime() + expirationDuration * 1000);
         this.saveAuthData(this.token, this.user);
