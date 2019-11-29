@@ -4,12 +4,14 @@ const Contents = require('../models/contents');
 const checkAuth = require('../middleware/check-auth');
 const multer = require('multer');
 
+// backend mime type check
 const MIME_TYPE = {
   'image/png': 'png',
   'image/jpeg': 'jpg',
   'image/jpg': 'jpg'
 };
 
+// The multer method for storing images in the backend folder
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     const isValid = MIME_TYPE[file.mimetype];
@@ -26,7 +28,7 @@ const storage = multer.diskStorage({
     const ext = MIME_TYPE[file.mimetype];
     cb(null, name + '-' + Date.now() + '.' + ext);
   }
-});
+}); // end of multer method
 
 // Get method to get all the content
 router.get('', (req, res, next) => {
@@ -72,6 +74,7 @@ router.post('',checkAuth, multer({storage: storage}).single("image"), (req, res,
   });
 });
 
+// delete method
 router.delete('/:id',checkAuth, (req, res, next) => {
   Contents.deleteOne({_id: req.params.id}).then(value => {
     res.json({
@@ -80,6 +83,7 @@ router.delete('/:id',checkAuth, (req, res, next) => {
   })
 });
 
+// to update a content
 router.patch('/:id',checkAuth, multer({storage: storage}).single("image"), (req, res, next) => {
   let imgPath;
   if (req.file){
@@ -101,8 +105,9 @@ router.patch('/:id',checkAuth, multer({storage: storage}).single("image"), (req,
       message: 'done'
     })
   });
-});
+}); // end of update method
 
+// find one method for finding a single content 
 router.get('/:id', (req, res, next) => {
   Contents.findById(req.params.id).then(content => {
     if(content) {
