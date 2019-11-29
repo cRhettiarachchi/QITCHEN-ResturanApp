@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 
+// just a get method to see if the router is working
 router.get('', (req, res, next) => {
   console.log('this is working');
   res.json({
@@ -11,23 +12,24 @@ router.get('', (req, res, next) => {
   });
 });
 
+// post method to add a new user
 router.post('/sign-up', (req, res, next) => {
-  bcrypt.hash(req.body.password, 10).then(hash => {
+  bcrypt.hash(req.body.password, 10).then(hash => { // encrypting the password
     const user = new User({
       email: req.body.email,
       password: hash,
       name: req.body.name
     });
-    user.save().then((result) => {
+    user.save().then((result) => { // save the user as a new user
       res.json(result);
-    }).catch(result => {
+    }).catch(result => { // catch to catch any errors ps: the errors are not handle properly in the front end
       res.json({
         message: 'failed',
         result: result
       });
     });
   });
-});
+}); // end of the method
 
 router.post('/login', (req, res, next) => {
   let updatedUser;
