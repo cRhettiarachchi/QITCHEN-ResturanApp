@@ -18,7 +18,16 @@ router.post('', (req, res, next) => {
       message: 'failed'
     })
   });
-  console.log('called');
+});
+
+router.get('', (req, res, next) => {
+  Message.find().then(values => {
+    console.log(values);
+    res.json({
+      message: 'success',
+      messages: values
+    })
+  })
 });
 
 module.exports = router;

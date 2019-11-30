@@ -13,4 +13,10 @@ export class MessagesService {
     const msg: MessageModel = {email, name, message};
     return this.http.post<{message: string}>(this.messageUrl, msg);
   }
+
+  getMessages() {
+    this.http.get<{message: string, messages: MessageModel}>(this.messageUrl).subscribe(values => {
+      console.log(values.messages);
+    });
+  }
 }

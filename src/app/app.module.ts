@@ -31,11 +31,12 @@ import {
   MatInputModule,
   MatPaginatorModule,
   MatSelectModule,
-  MatSidenavModule, MatToolbarModule
+  MatSidenavModule, MatSnackBarModule, MatToolbarModule
 } from '@angular/material';
 import { LoginComponent } from './sign-in/login/login.component';
 import { RegisterComponent } from './sign-in/register/register.component';
 import {AuthInterceptor} from './sign-in/auth-interceptor';
+
 
 @NgModule({
   declarations: [
@@ -79,6 +80,7 @@ import {AuthInterceptor} from './sign-in/auth-interceptor';
     MatExpansionModule,
     MatIconModule,
     MatToolbarModule,
+    MatSnackBarModule
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]

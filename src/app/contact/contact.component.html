@@ -62,6 +62,8 @@
           <mat-error *ngIf="message.invalid">Message must be at least 20 characters</mat-error>
         </mat-form-field>
 <!--        <button type = "submit" mat-raised-button color="primary">Send</button>-->
+        <p *ngIf="status === 'Successful'">Message sent success!</p>
+        <p *ngIf="status === 'failed'">Please retry!</p>
         <button type = "submit" mat-raised-button color="primary">Send</button>
       </form>
 

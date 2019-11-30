@@ -36,7 +36,6 @@ router.get('', (req, res, next) => {
   let pageIndex = +req.query.pageindex;
   const contentFind = Contents.find();
   // if(pageSize & pageIndex) {
-    console.log(pageSize + ' ' + pageIndex);
     contentFind
       .limit(pageSize).skip(pageSize * (pageIndex - 1));
   // }
@@ -107,7 +106,7 @@ router.patch('/:id',checkAuth, multer({storage: storage}).single("image"), (req,
   });
 }); // end of update method
 
-// find one method for finding a single content 
+// find one method for finding a single content
 router.get('/:id', (req, res, next) => {
   Contents.findById(req.params.id).then(content => {
     if(content) {
