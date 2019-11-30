@@ -18,4 +18,7 @@ router.post('', (req, res, next) => {
       message: 'failed'
     })
   });
+  console.log('called');
 });
+
+module.exports = router;
