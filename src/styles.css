@@ -15,3 +15,8 @@ a:hover{
   text-decoration: none !important;
 }
 
+.done{
+  color: rgba(0, 0, 255, 0.69);
+  background-color: white;
+}
+

@@ -16,18 +16,23 @@ export class ContactComponent implements OnInit {
 
   onSubmit(form: NgForm) {
     if (form.invalid) {
-      this.openSnackBar();
       return;
     }
     this.messageService.createMessage(form.value.email, form.value.name, form.value.message).subscribe(value => {
       this.status = value.message;
+      if (this.status === 'Successful') {
+        this.openSnackBar('Message sent successful');
+      } else {
+        this.openSnackBar('Message sent failed!');
+      }
     });
   }
-  openSnackBar() {
-    this.snackBar.open('Please check the form', 'ok', {
-      duration: 2000,
-      horizontalPosition: 'right',
-      panelClass: ['error']
+  openSnackBar(message: string) {
+    this.snackBar.open(message, 'ok', {
+      duration: 5000,
+      horizontalPosition: 'end',
+      verticalPosition: 'top',
+      panelClass: ['done']
     });
   }
 }
