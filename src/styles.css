@@ -16,7 +16,11 @@ a:hover{
 }
 
 .done{
-  color: rgba(0, 0, 255, 0.69);
-  background-color: white;
+  transform-origin: top center !important;
+  color: yellow;
+}
+
+.cdk-overlay-container, .cdk-global-overlay-wrapper {
+  top: 3% !important;
 }
 
