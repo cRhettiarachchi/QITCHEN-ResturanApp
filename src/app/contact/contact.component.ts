@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {NgForm} from '@angular/forms';
+import {MessagesService} from '../services/messages.service';
 
 @Component({
   selector: 'app-contact',
@@ -7,12 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactComponent implements OnInit {
 
-  constructor() { }
-  onChange(event) {
-    console.log(event);
-  }
+  constructor(private messageService: MessagesService) { }
 
-  ngOnInit() {
+  ngOnInit(): void {}
+
+  onSubmit(form: NgForm) {
+    if (form.invalid) {
+      return;
+    }
+    this.messageService.createMessage(form.value.email, form.value.name, form.value.message).subscribe(value => {
+      console.log(value);
+    });
   }
 
 }

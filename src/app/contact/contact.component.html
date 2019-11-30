@@ -44,7 +44,7 @@
   <div class="row">
     <div class="col-md-6 contact-form">
       <h3>Or gust email us here!</h3>
-      <form #messageForm = "ngForm">
+      <form (submit)="onSubmit(messageForm)" #messageForm = "ngForm">
 <!--        <div class="example-container">-->
           <mat-form-field>
             <input type = "email" ngModel name = "email" #email = "ngModel" matInput placeholder="Enter your email" aria-required="true" required email>
@@ -61,7 +61,8 @@
           <textarea ngModel #message = "ngModel" name = "message" rows = "5" matInput placeholder="Enter Message" required minlength="20"></textarea>
           <mat-error *ngIf="message.invalid">Message must be at least 20 characters</mat-error>
         </mat-form-field>
-        <button mat-raised-button color="primary" (click)="onChange(email)">Send</button>
+<!--        <button type = "submit" mat-raised-button color="primary">Send</button>-->
+        <button type = "submit" mat-raised-button color="primary">Send</button>
       </form>
 
     </div>

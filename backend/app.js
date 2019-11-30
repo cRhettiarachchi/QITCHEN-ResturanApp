@@ -26,6 +26,6 @@ app.use("/images", express.static(path.join("backend/images")));
 
 app.use('/contents', router);
 app.use('/users', userRouter);
-app.use('message', messageRouter);
+app.use('/message', messageRouter);
 
 module.exports = app;

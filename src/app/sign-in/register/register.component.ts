@@ -20,6 +20,7 @@ export class RegisterComponent implements OnInit {
     if (form.invalid || form.value.password !== form.value.cPassword) {
       return;
     }
+    console.log(form);
     this.authService.createUser(form.value.email, form.value.name, form.value.password);
     form.resetForm();
     // this.authService.callMethod();
