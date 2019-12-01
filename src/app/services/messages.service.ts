@@ -15,8 +15,6 @@ export class MessagesService {
   }
 
   getMessages() {
-    this.http.get<{message: string, messages: MessageModel}>(this.messageUrl).subscribe(values => {
-      console.log(values.messages);
-    });
+    return this.http.get<{message: string, messages: MessageModel[]}>(this.messageUrl);
   }
 }

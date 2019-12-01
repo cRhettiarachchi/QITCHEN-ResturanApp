@@ -1,0 +1,11 @@
+.messages-container {
+  margin-top: 5%;
+}
+
+.delete-icon {
+  fill: #6e6e6e;
+}
+
+.delete-icon:hover {
+  fill: #000;
+}
