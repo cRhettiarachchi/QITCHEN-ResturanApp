@@ -1,28 +1,32 @@
- <div class="container">
-   <div class="row">
-     <h2 class = "heading">All Contents</h2>
-   </div>
-   <div class="content" *ngFor="let content of allContents">
-     <mat-accordion>
-       <mat-expansion-panel>
-         <mat-expansion-panel-header>
-           <mat-panel-title>
-             <h5>{{content.heading}}</h5>
-           </mat-panel-title>
-           <mat-panel-description>
-             {{content.description}}
-           </mat-panel-description>
-         </mat-expansion-panel-header>
-         <button mat-raised-button [routerLink]="['/content', content.id]">View</button>
-         <button mat-raised-button [routerLink]="['/dashboard', 'edit', content.id]">Edit</button>
-         <button mat-raised-button (click)="onDelete(content.id)" color = "warn">Delete</button>
-       </mat-expansion-panel>
-     </mat-accordion>
-   </div>
-   <mat-paginator [length]="10"
-                  [pageSize]="pageSize"
-                  (page)="onPageChange($event)"  *ngIf="allContents.length > 0"></mat-paginator>
- </div>
+<div class="container">
+  <div class="row">
+    <h2 class="heading">All Contents</h2>
+  </div>
+  <div class="row content-heading">
+    <div class="col-3">
+      <h4>Title</h4>
+    </div>
+    <div class="col-7">
+      <h4>Description</h4>
+    </div>
+    <div class="col-2">
+      <h4>Actions</h4>
+    </div>
+  </div>
+  <div class="row" *ngFor="let content of allContents">
+    <div class="col-3">
+      <h5>{{content.heading}}</h5>
+    </div>
+    <div class="col-7">
+      <h5>{{content.description}}</h5>
+    </div>
+    <div class="col-2 icon-set">
+      <button mat-icon-button [routerLink]="['/content', content.id]"><svg class = "icons edit-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M256 105c-101.8 0-188.4 62.4-224 151 35.6 88.6 122.2 151 224 151s188.4-62.4 224-151c-35.6-88.6-122.2-151-224-151zm0 251.7c-56 0-101.8-45.3-101.8-100.7S200 155.3 256 155.3 357.8 200.6 357.8 256 312 356.7 256 356.7zm0-161.1c-33.6 0-61.1 27.2-61.1 60.4s27.5 60.4 61.1 60.4 61.1-27.2 61.1-60.4-27.5-60.4-61.1-60.4z"/></svg></button>
+      <button mat-icon-button [routerLink]="['/dashboard', 'edit', content.id]"><svg class = "icons view-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M404.3 86l-202 202c-1.5 1.5-2.3 3.5-2.3 5.6v26.5c0 4.4 3.6 7.9 7.9 7.9h26.3c2.1 0 4.2-.8 5.7-2.3l202.1-202c3.1-3.1 3.1-8.1 0-11.2L415.5 86c-3.1-3.1-8.1-3.1-11.2 0zM475.6 67l-14.4-14.4-.2-.2c-3.1-2.7-7.2-4.4-11.5-4.4-4.4 0-8.5 1.7-11.6 4.5l-11.3 11.4c-1.5 1.6-1.5 4.1 0 5.6L437 79.9l21.7 21.7c1.6 1.6 4.1 1.6 5.7 0l11.3-11.3c2.8-3.1 4.4-7.1 4.4-11.6-.1-4.4-1.7-8.6-4.5-11.7z"/><g><path d="M250 342c-3 3-7.1 4.7-11.3 4.7H197.3c-8.8 0-16-7.2-16-16V289.2c0-4.2 1.7-8.3 4.7-11.3l.8-.8 147.6-147.6c2.5-2.5.7-6.8-2.8-6.8H90.7C58.3 122.7 32 149 32 181.4v224c0 32.4 26.3 58.7 58.7 58.7h256c32.4 0 58.7-26.3 58.7-58.7v-209c0-3.6-4.3-5.3-6.8-2.8L250.8 341.2l-.8.8z"/></g></svg></button>
+      <button mat-icon-button (click)="onDelete(content.id)" color="warn"><svg class = "icons delete-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M128 405.429C128 428.846 147.198 448 170.667 448h170.667C364.802 448 384 428.846 384 405.429V160H128v245.429zM416 96h-80l-26.785-32H202.786L176 96H96v32h320V96z"/></svg></button>
+    </div>
+  </div>
+</div>
 
 <!-- <div class="col-12">-->
 <!--   <div class="card">-->
@@ -33,4 +37,39 @@
 <!--       </div>-->
 <!--     </div>-->
 <!--   </div>-->
+<!-- </div>-->
+
+<!--   <mat-accordion>-->
+<!--     <mat-expansion-panel>-->
+<!--       <mat-expansion-panel-header>-->
+<!--         <mat-panel-title>-->
+<!--           <h5>{{content.heading}}</h5>-->
+<!--         </mat-panel-title>-->
+<!--         <mat-panel-description>-->
+<!--           {{content.description}}-->
+<!--         </mat-panel-description>-->
+<!--       </mat-expansion-panel-header>-->
+<!--     </mat-expansion-panel>-->
+<!--   </mat-accordion>-->
+<!-- </div>-->
+<!-- <mat-paginator [length]="10"-->
+<!--                [pageSize]="pageSize"-->
+<!--                (page)="onPageChange($event)"  *ngIf="allContents.length > 0"></mat-paginator>-->
+
+
+<!-- <div class="content" *ngFor="let content of allContents">-->
+<!--   <table>-->
+<!--     <tr>-->
+<!--       <th>Title</th>-->
+<!--       <th colspan="6">Description</th>-->
+<!--       <th>actions</th>-->
+<!--     </tr>-->
+<!--     <tr>-->
+<!--       <td>{{content.heading}}</td>-->
+<!--       <td colspan="6">{{content.description}}</td>-->
+<!--       <td>         <button mat-raised-button [routerLink]="['/content', content.id]">View</button>-->
+<!--         <button mat-raised-button [routerLink]="['/dashboard', 'edit', content.id]">Edit</button>-->
+<!--         <button mat-raised-button (click)="onDelete(content.id)" color = "warn">Delete</button></td>-->
+<!--     </tr>-->
+<!--   </table>-->
 <!-- </div>-->

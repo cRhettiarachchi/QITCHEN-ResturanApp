@@ -9,8 +9,9 @@ import {ActivatedRoute, ParamMap} from '@angular/router';
   styleUrls: ['./content.component.css']
 })
 export class ContentComponent implements OnInit {
-
   content: ContentModel;
+  rate = 6;
+  max = 10;
   constructor(private contentService: ContentService, private route: ActivatedRoute) { }
 
   ngOnInit() {

@@ -36,6 +36,7 @@ import {
 import { LoginComponent } from './sign-in/login/login.component';
 import { RegisterComponent } from './sign-in/register/register.component';
 import {AuthInterceptor} from './sign-in/auth-interceptor';
+import { RatingModule } from 'ngx-bootstrap/rating';
 
 
 @NgModule({
@@ -80,7 +81,8 @@ import {AuthInterceptor} from './sign-in/auth-interceptor';
     MatExpansionModule,
     MatIconModule,
     MatToolbarModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    RatingModule.forRoot()
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]

@@ -9,6 +9,15 @@
     <div class="col-md-4">
       <p class = "description">{{content.description}}</p>
       <p class = "category">Category: {{content.category}}</p>
+      <p class = "category">Price: Rs.{{content.price}}.00</p>
+      <rating [(ngModel)]="rate" [max]="max" [readonly]="true"></rating>
     </div>
   </div>
 </div>
+
+<!--<rating [(ngModel)]="rate" [max]="max" [readonly]="isReadonly"-->
+<!--        (onHover)="hoveringOver($event)" (onLeave)="resetStar()"-->
+<!--        [titles]="['one','two','three']"></rating>-->
+<!--<span class="label"-->
+<!--      [ngClass]="{'label-warning': percent<30, 'label-info': percent>=30 && percent<70, 'label-success': percent>=70}"-->
+<!--      [ngStyle]="{display: (overStar && !isReadonly) ? 'inline' : 'none'}">{{percent}}%</span>-->
