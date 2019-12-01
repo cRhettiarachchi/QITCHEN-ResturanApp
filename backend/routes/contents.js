@@ -132,10 +132,9 @@ router.get('/single/:type', (req, res, next) => {
   const contentFind = Contents.find({category: req.params.type});
   contentFind
     .limit(pageSize).skip(pageSize * (pageIndex - 1));
-  console.log(req.params.type);
   contentFind.then((documents) => {
     updatedDocuments = documents;
-    return Contents.count();
+    return Contents.count({category: req.params.type});
   }).then(count => {
     console.log(count);
     res.json({

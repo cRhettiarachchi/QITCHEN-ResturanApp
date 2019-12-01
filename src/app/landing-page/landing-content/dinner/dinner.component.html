@@ -2,7 +2,7 @@
   <h2>Dinner</h2>
   <div class="row">
     <div class="wrapper" *ngFor="let content of contents">
-      <div class="col-md-4" *ngIf="content.category === 'Dinner'" >
+      <div class="col-md-4">
         <div class="card" style="width: 18rem;"  >
           <a [routerLink]="['/content', content.id]"><img [src]="content.imagePath" class="card-img-top" alt="...">
             <div class="card-body">
@@ -17,7 +17,7 @@
 
 <div class="container">
   <div class="col-md-10 m-auto">
-    <mat-paginator [length]="10"
+    <mat-paginator [length]="total"
                    [pageSize]="pageSize"
                    (page)="onPageChange($event)" *ngIf="contents.length > 0" ></mat-paginator>
   </div>

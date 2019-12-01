@@ -12,21 +12,21 @@ export class CoffeeComponent implements OnInit {
 
   contents: ContentModel[] = [];
   pageSize = 5;
-  total: 10;
+  total: number;
   pageIndex = 1;
 
   constructor(private contentService: ContentService) { }
 
   ngOnInit() {
-    this.contentService.getAllcontents(this.pageSize, this.pageIndex);
-    this.contentService.contentAsObservable().subscribe((content) => {
-      this.contents = content;
+    this.contentService.getSingleType('coffee', this.pageSize, this.pageIndex);
+    this.contentService.contentAsObservable().subscribe((contentData) => {
+      this.contents = contentData.contents;
+      this.total = contentData.count;
     });
   }
 
   onPageChange(event: PageEvent) {
     this.pageIndex = event.pageIndex + 1;
-    console.log('---------------------' + this.pageIndex);
     this.contentService.getAllcontents(this.pageSize, this.pageIndex);
   }
 

@@ -22,8 +22,6 @@ export class BreakfastComponent implements OnInit {
     this.contentService.contentAsObservable().subscribe((contentData) => {
       this.contents = contentData.contents;
       this.total = contentData.count;
-      console.log(this.contents);
-      console.log('the total is ' + this.total);
     });
   }
   onPageChange(event: PageEvent) {
