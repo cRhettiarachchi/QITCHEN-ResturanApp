@@ -11,16 +11,19 @@ import {PageEvent} from '@angular/material';
 export class BreakfastComponent implements OnInit {
 
   contents: ContentModel[] = [];
-  pageSize = 5;
-  total: 10;
+  pageSize = 1;
+  total: number;
   pageIndex = 1;
 
   constructor(private contentService: ContentService) { }
 
   ngOnInit() {
-    this.contentService.getAllcontents(this.pageSize, this.pageIndex);
-    this.contentService.contentAsObservable().subscribe((content) => {
-      this.contents = content;
+    this.contentService.getSingleType('breakfast', this.pageSize, this.pageIndex);
+    this.contentService.contentAsObservable().subscribe((contentData) => {
+      this.contents = contentData.contents;
+      this.total = contentData.count;
+      console.log(this.contents);
+      console.log('the total is ' + this.total);
     });
   }
   onPageChange(event: PageEvent) {

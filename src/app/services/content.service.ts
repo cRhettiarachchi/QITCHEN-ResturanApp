@@ -18,7 +18,6 @@ getAllcontents(pageSize: number, pageIndex: number) {
   this.http.get<{message: string, contents: any, count: number}>(this.getContentUrl + '/' + queries)
     .pipe(map((contentsData) => {
       return {contents: contentsData.contents.map(cont => {
-        console.log(cont.heading);
         return {
           heading: cont.heading,
           description: cont.description,
@@ -79,6 +78,30 @@ updateContent(id: string, head: string, desc: string, cat: string, price: number
     };
   }
   return this.http.patch<{message: string}>(this.getContentUrl + '/' + id, contentData);
+}
+
+getSingleType(type: string, pageSize: number, pageIndex: number) {
+  const queries = `?pagesize=${pageSize}&pageindex=${pageIndex}`;
+  this.http.get<{contents: any[], count: number}>(this.getContentUrl + '/single/' + type + '/' + queries)
+    .pipe(map((contentsData) => {
+        return {contents: contentsData.contents.map(cont => {
+            return {
+              heading: cont.heading,
+              description: cont.description,
+              category: cont.category,
+              id: cont._id,
+              price: cont.price,
+              imagePath: cont.imagePath
+            };
+          }),
+          count: contentsData.count};
+      })
+    )
+    .subscribe((gotContents) => {
+      console.log(gotContents.count);
+      this.contents = gotContents.contents;
+      this.contentSubject.next({contents: [...this.contents], count: gotContents.count});
+    });
 }
 
 deleteContent(id: string) {

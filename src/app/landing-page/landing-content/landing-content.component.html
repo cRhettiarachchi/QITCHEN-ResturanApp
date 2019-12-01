@@ -15,7 +15,7 @@
   </div>
   <div class="container">
     <div class="col-md-10 m-auto">
-      <mat-paginator [length]="10"
+      <mat-paginator [length]="total"
                      [pageSize]="pageSize"
                      (page)="onPageChange($event)" *ngIf="contents.length > 0" ></mat-paginator>
     </div>
