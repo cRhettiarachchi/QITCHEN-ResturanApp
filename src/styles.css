@@ -20,6 +20,11 @@ a:hover{
   color: yellow;
 }
 
+.deleted {
+  color: yellow;
+  top: 0 !important;
+}
+
 .cdk-overlay-container, .cdk-global-overlay-wrapper {
   top: 3% !important;
 }

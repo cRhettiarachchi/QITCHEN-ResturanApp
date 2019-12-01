@@ -16,7 +16,6 @@ export class ContentService {
 
 getAllcontents(pageSize: number, pageIndex: number) {
   let queries = `?pagesize=${pageSize}&pageindex=${pageIndex}`;
-  console.log(queries);
   this.http.get<{message: string, contents: any}>(this.getContentUrl + '/' + queries)
     .pipe(map((contentsData) => {
       return contentsData.contents.map(cont => {

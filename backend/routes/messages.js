@@ -22,10 +22,19 @@ router.post('', (req, res, next) => {
 
 router.get('', (req, res, next) => {
   Message.find().then(values => {
-    console.log(values);
     res.json({
       message: 'success',
       messages: values
+    })
+  })
+});
+
+router.delete('/:id', (req, res, next) => {
+  Message.deleteOne({_id: req.params.id}).then(result => {
+    console.log(result);
+    res.json({
+      message: 'done',
+      result: result
     })
   })
 });
