@@ -34,22 +34,28 @@ const storage = multer.diskStorage({
 router.get('', (req, res, next) => {
   let pageSize = +req.query.pagesize;
   let pageIndex = +req.query.pageindex;
+  let updatedDocuments;
   const contentFind = Contents.find();
   // if(pageSize & pageIndex) {
-    contentFind
-      .limit(pageSize).skip(pageSize * (pageIndex - 1));
+  contentFind
+    .limit(pageSize).skip(pageSize * (pageIndex - 1));
   // }
   contentFind
     .then((documents) => {
-      res.json({
-        message: 'good',
-        contents: documents
-      });
+      updatedDocuments = documents;
+      return Contents.count();
+    }).then(count => {
+      console.log(count);
+    res.json({
+      message: 'good',
+      contents: updatedDocuments,
+      count: count
     })
+  })
 });
 
 // Post method to create new content
-router.post('',checkAuth, multer({storage: storage}).single("image"), (req, res, next) => {
+router.post('', checkAuth, multer({storage: storage}).single("image"), (req, res, next) => {
   const url = req.protocol + '://' + req.get('host');
   const content = new Contents({
     heading: req.body.heading,
@@ -74,7 +80,7 @@ router.post('',checkAuth, multer({storage: storage}).single("image"), (req, res,
 });
 
 // delete method
-router.delete('/:id',checkAuth, (req, res, next) => {
+router.delete('/:id', checkAuth, (req, res, next) => {
   Contents.deleteOne({_id: req.params.id}).then(value => {
     res.json({
       message: 'done'
@@ -83,9 +89,9 @@ router.delete('/:id',checkAuth, (req, res, next) => {
 });
 
 // to update a content
-router.patch('/:id',checkAuth, multer({storage: storage}).single("image"), (req, res, next) => {
+router.patch('/:id', checkAuth, multer({storage: storage}).single("image"), (req, res, next) => {
   let imgPath;
-  if (req.file){
+  if (req.file) {
     const url = req.protocol + '://' + req.get('host');
     imgPath = url + '/images/' + req.file.filename;
   } else {
@@ -109,7 +115,7 @@ router.patch('/:id',checkAuth, multer({storage: storage}).single("image"), (req,
 // find one method for finding a single content
 router.get('/:id', (req, res, next) => {
   Contents.findById(req.params.id).then(content => {
-    if(content) {
+    if (content) {
       res.json(content);
     } else {
       res.status(404).json({

@@ -2,23 +2,22 @@ import { Injectable } from '@angular/core';
 import {Observable, Subject} from 'rxjs';
 import {ContentModel} from '../models/content.model';
 import {HttpClient} from '@angular/common/http';
-import { map } from 'rxjs/operators';
-import {MatSnackBar} from '@angular/material';
+import {count, map} from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
 export class ContentService {
   private contents: ContentModel[] = [];
-  private contentSubject = new Subject<ContentModel[]>();
+  private contentSubject = new Subject<{contents: ContentModel[], count: number}>();
   private resultmessage: string;
 
   private getContentUrl = 'http://localhost:8080/contents';
 
 getAllcontents(pageSize: number, pageIndex: number) {
-  let queries = `?pagesize=${pageSize}&pageindex=${pageIndex}`;
-  this.http.get<{message: string, contents: any}>(this.getContentUrl + '/' + queries)
+  const queries = `?pagesize=${pageSize}&pageindex=${pageIndex}`;
+  this.http.get<{message: string, contents: any, count: number}>(this.getContentUrl + '/' + queries)
     .pipe(map((contentsData) => {
-      return contentsData.contents.map(cont => {
+      return {contents: contentsData.contents.map(cont => {
         console.log(cont.heading);
         return {
           heading: cont.heading,
@@ -28,12 +27,14 @@ getAllcontents(pageSize: number, pageIndex: number) {
           price: cont.price,
           imagePath: cont.imagePath
         };
-      });
-    }))
+      }),
+      count: contentsData.count};
+    })
+    )
     .subscribe((gotContents) => {
-      console.log(gotContents);
-      this.contents = gotContents;
-      this.contentSubject.next(this.contents);
+      console.log(gotContents.count);
+      this.contents = gotContents.contents;
+      this.contentSubject.next({contents: [...this.contents], count: gotContents.count});
   });
 }
 
@@ -81,25 +82,14 @@ updateContent(id: string, head: string, desc: string, cat: string, price: number
 }
 
 deleteContent(id: string) {
-  this.http.delete<{message: string}>(this.getContentUrl + '/' + id).subscribe(value => {
-    this.contents = this.contents.filter(content => content.id !== id);
-    this.contentSubject.next([...this.contents]);
-    this.openSnackBar('Content Deleted Successfully');
-  });
+  return this.http.delete<{message: string}>(this.getContentUrl + '/' + id);
 }
 
-  openSnackBar(message: string) {
-    this.snackBar.open(message, ' ', {
-      duration: 5000,
-      horizontalPosition: 'end',
-      verticalPosition: 'top',
-      panelClass: ['done']
-    });
-  }
 
-contentAsObservable(): Observable<ContentModel[]> {
+
+contentAsObservable(): Observable<{contents: ContentModel[], count: number}> {
   return this.contentSubject.asObservable();
 }
 
-  constructor(private http: HttpClient, private snackBar: MatSnackBar) {}
+  constructor(private http: HttpClient) {}
 }

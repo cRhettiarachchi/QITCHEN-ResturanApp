@@ -26,11 +26,11 @@
       <button mat-icon-button (click)="onDelete(content.id)" color="warn"><svg class = "icons delete-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M128 405.429C128 428.846 147.198 448 170.667 448h170.667C364.802 448 384 428.846 384 405.429V160H128v245.429zM416 96h-80l-26.785-32H202.786L176 96H96v32h320V96z"/></svg></button>
     </div>
   </div>
+   <mat-paginator [length]="total"
+                  [pageSize]="pageSize"
+                  (page)="onPageChange($event)"  *ngIf="allContents.length > 0"></mat-paginator>
 </div>
 
-<!-- <div class="col-12">-->
-<!--   <div class="card">-->
-<!--     <div class="card-body">-->
 
 
 <!--       <div class="right-side">-->
@@ -51,25 +51,4 @@
 <!--       </mat-expansion-panel-header>-->
 <!--     </mat-expansion-panel>-->
 <!--   </mat-accordion>-->
-<!-- </div>-->
-<!-- <mat-paginator [length]="10"-->
-<!--                [pageSize]="pageSize"-->
-<!--                (page)="onPageChange($event)"  *ngIf="allContents.length > 0"></mat-paginator>-->
-
-
-<!-- <div class="content" *ngFor="let content of allContents">-->
-<!--   <table>-->
-<!--     <tr>-->
-<!--       <th>Title</th>-->
-<!--       <th colspan="6">Description</th>-->
-<!--       <th>actions</th>-->
-<!--     </tr>-->
-<!--     <tr>-->
-<!--       <td>{{content.heading}}</td>-->
-<!--       <td colspan="6">{{content.description}}</td>-->
-<!--       <td>         <button mat-raised-button [routerLink]="['/content', content.id]">View</button>-->
-<!--         <button mat-raised-button [routerLink]="['/dashboard', 'edit', content.id]">Edit</button>-->
-<!--         <button mat-raised-button (click)="onDelete(content.id)" color = "warn">Delete</button></td>-->
-<!--     </tr>-->
-<!--   </table>-->
 <!-- </div>-->
