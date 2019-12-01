@@ -3,6 +3,7 @@ import {Observable, Subject} from 'rxjs';
 import {ContentModel} from '../models/content.model';
 import {HttpClient} from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import {MatSnackBar} from '@angular/material';
 @Injectable({
   providedIn: 'root'
 })
@@ -84,12 +85,22 @@ deleteContent(id: string) {
   this.http.delete<{message: string}>(this.getContentUrl + '/' + id).subscribe(value => {
     this.contents = this.contents.filter(content => content.id !== id);
     this.contentSubject.next([...this.contents]);
+    this.openSnackBar('Content Deleted Successfully');
   });
 }
+
+  openSnackBar(message: string) {
+    this.snackBar.open(message, ' ', {
+      duration: 5000,
+      horizontalPosition: 'end',
+      verticalPosition: 'top',
+      panelClass: ['done']
+    });
+  }
 
 contentAsObservable(): Observable<ContentModel[]> {
   return this.contentSubject.asObservable();
 }
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private snackBar: MatSnackBar) {}
 }

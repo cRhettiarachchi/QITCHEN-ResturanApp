@@ -4,6 +4,7 @@ import {AuthDataModel} from './auth-data.model';
 import {Router} from '@angular/router';
 import {Observable, Subject} from 'rxjs';
 import {UserModel} from '../models/user.model';
+import {MatSnackBar} from '@angular/material';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,7 @@ export class AuthService {
   private user: UserModel;
   private isAuthenticated = new Subject<boolean>();
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router, private snackBar: MatSnackBar) { }
   createUser(email: string, name: string, password: string) {
     const authData: AuthDataModel = ({email, name, password});
     this.http.post(this.userUrl + 'sign-up', authData).subscribe(message => {
@@ -66,7 +67,9 @@ export class AuthService {
         const now = new Date();
         const expDate = new Date(now.getTime() + expirationDuration * 1000);
         this.saveAuthData(this.token, this.user);
-        this.router.navigate(['/dashboard']).then(r => {});
+        this.router.navigate(['/dashboard']).then(r => {
+          this.openSnackBar('Welcome ' + this.user.name);
+        });
       }
     });
   }
@@ -79,6 +82,15 @@ export class AuthService {
       this.authStatus = true;
       this.isAuthenticated.next(true);
     }
+  }
+
+  openSnackBar(message: string) {
+    this.snackBar.open(message, ' ', {
+      duration: 5000,
+      horizontalPosition: 'end',
+      verticalPosition: 'top',
+      panelClass: ['done']
+    });
   }
 
   logout() {

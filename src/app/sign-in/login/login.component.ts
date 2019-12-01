@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {AuthService} from '../auth.service';
-import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +12,6 @@ export class LoginComponent implements OnInit {
   msg: string;
 
   constructor(private authService: AuthService) { }
-
   ngOnInit() {
   }
   onSubmit(form: NgForm) {
@@ -27,6 +25,8 @@ export class LoginComponent implements OnInit {
   }
 
 }
+
+
 
 // .subscribe(value => {
 //   this.msg = value.message;

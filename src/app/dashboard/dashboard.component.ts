@@ -22,19 +22,19 @@ export class DashboardComponent implements OnInit {
     this.authService.getUserSubject().subscribe(value => {
       this.user = value;
     });
-    if (this.isFirstVisit) {
-      this.openSnackBar('Welcome ' + this.user.name + '!');
-    }
+    // if (this.isFirstVisit) {
+    //   this.openSnackBar('Welcome ' + this.user.name + '!');
+    // }
   }
 
-  openSnackBar(message: string) {
-    this.snackBar.open(message, ' ', {
-      duration: 5000,
-      horizontalPosition: 'end',
-      verticalPosition: 'top',
-      panelClass: ['done']
-    });
-    this.isFirstVisit = false;
-  }
+  // openSnackBar(message: string) {
+  //   this.snackBar.open(message, ' ', {
+  //     duration: 5000,
+  //     horizontalPosition: 'end',
+  //     verticalPosition: 'top',
+  //     panelClass: ['done']
+  //   });
+  //   this.isFirstVisit = false;
+  // }
 
 }

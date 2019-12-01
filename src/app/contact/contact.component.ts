@@ -20,11 +20,8 @@ export class ContactComponent implements OnInit {
     }
     this.messageService.createMessage(form.value.email, form.value.name, form.value.message).subscribe(value => {
       this.status = value.message;
-      if (this.status === 'Successful') {
-        this.openSnackBar('Message sent successful');
-      } else {
-        this.openSnackBar('Message sent failed!');
-      }
+      this.openSnackBar('Message sent was ' + this.status);
+      form.resetForm();
     });
   }
   openSnackBar(message: string) {

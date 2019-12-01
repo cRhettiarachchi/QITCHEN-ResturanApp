@@ -4,6 +4,7 @@ import {ContentService} from '../../services/content.service';
 import {ActivatedRoute, ParamMap} from '@angular/router';
 import {ContentModel} from '../../models/content.model';
 import {group} from '@angular/animations';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-add-content',
@@ -20,7 +21,7 @@ export class AddContentComponent implements OnInit {
   id: string;
   content: ContentModel = null;
 
-  constructor(private contentService: ContentService, private router: ActivatedRoute) { }
+  constructor(private contentService: ContentService, private router: ActivatedRoute, private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     // get the id from the router
@@ -73,8 +74,8 @@ export class AddContentComponent implements OnInit {
           if (value.message === 'done') {
             this.formValue.reset({category: 'Breakfast'});
             formDirective.resetForm({category: 'Breakfast'});
-            this.message = 'created';
             this.imagePreview = null;
+            this.openSnackBar('Content Created Successfully');
           }
       });
     } else {
@@ -87,8 +88,8 @@ export class AddContentComponent implements OnInit {
           if (value.message === 'done') {
             this.formValue.reset({category: 'Breakfast'});
             formDirective.resetForm({category: 'Breakfast'});
-            this.message = 'updated';
             this.imagePreview = null;
+            this.openSnackBar('Content updated Successfully');
           }
       });
     }
@@ -104,5 +105,14 @@ export class AddContentComponent implements OnInit {
       this.imagePreview = reader.result;
     };
     reader.readAsDataURL(file);
+  }
+
+  openSnackBar(message: string) {
+    this.snackBar.open(message, 'ok', {
+      duration: 5000,
+      horizontalPosition: 'end',
+      verticalPosition: 'top',
+      panelClass: ['done']
+    });
   }
 }
