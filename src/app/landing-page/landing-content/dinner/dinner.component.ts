@@ -11,7 +11,7 @@ import {PageEvent} from '@angular/material';
 export class DinnerComponent implements OnInit {
 
   contents: ContentModel[] = [];
-  pageSize = 5;
+  pageSize = 1;
   total: number;
   pageIndex = 1;
 
@@ -27,6 +27,6 @@ export class DinnerComponent implements OnInit {
   onPageChange(event: PageEvent) {
     this.pageIndex = event.pageIndex + 1;
     console.log('---------------------' + this.pageIndex);
-    this.contentService.getAllcontents(this.pageSize, this.pageIndex);
+    this.contentService.getSingleType('dinner', this.pageSize, this.pageIndex);
   }
 }

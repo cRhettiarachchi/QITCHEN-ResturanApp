@@ -27,7 +27,7 @@ export class BreakfastComponent implements OnInit {
   onPageChange(event: PageEvent) {
     this.pageIndex = event.pageIndex + 1;
     console.log('---------------------' + this.pageIndex);
-    this.contentService.getAllcontents(this.pageSize, this.pageIndex);
+    this.contentService.getSingleType('breakfast', this.pageSize, this.pageIndex);
   }
 
 }
