@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const Contents = require('../models/contents');
 const checkAuth = require('../middleware/check-auth');
+const ControllerContents = require('../controllers/contents');
 const multer = require('multer');
 
 // backend mime type check
@@ -31,117 +31,20 @@ const storage = multer.diskStorage({
 }); // end of multer method
 
 // Get method to get all the content
-router.get('', (req, res, next) => {
-  let pageSize = +req.query.pagesize;
-  let pageIndex = +req.query.pageindex;
-  let updatedDocuments;
-  const contentFind = Contents.find();
-  // if(pageSize & pageIndex) {
-  contentFind
-    .limit(pageSize).skip(pageSize * (pageIndex - 1));
-  // }
-  contentFind
-    .then((documents) => {
-      updatedDocuments = documents;
-      return Contents.count();
-    }).then(count => {
-      console.log(count);
-    res.json({
-      message: 'good',
-      contents: updatedDocuments,
-      count: count
-    })
-  })
-});
+router.get('', ControllerContents.getAllContents);
 
 // Post method to create new content
-router.post('', checkAuth, multer({storage: storage}).single("image"), (req, res, next) => {
-  const url = req.protocol + '://' + req.get('host');
-  const content = new Contents({
-    heading: req.body.heading,
-    description: req.body.description,
-    category: req.body.category,
-    price: +req.body.price,
-    imagePath: url + '/images/' + req.file.filename
-  });
-  content.save().then((value) => {
-    console.log(value._id);
-    res.status(200).json({
-      message: "done",
-      contentValue: {
-        id: value._id,
-        heading: value.heading,
-        description: value.description,
-        category: value.category,
-        imagePath: value.imagePath
-      }
-    });
-  });
-});
+router.post('', checkAuth, multer({storage: storage}).single("image"), ControllerContents.createContent);
 
 // delete method
-router.delete('/:id', checkAuth, (req, res, next) => {
-  Contents.deleteOne({_id: req.params.id}).then(value => {
-    res.json({
-      message: 'done'
-    })
-  })
-});
+router.delete('/:id', checkAuth, ControllerContents.deleteContent);
 
 // to update a content
-router.patch('/:id', checkAuth, multer({storage: storage}).single("image"), (req, res, next) => {
-  let imgPath;
-  if (req.file) {
-    const url = req.protocol + '://' + req.get('host');
-    imgPath = url + '/images/' + req.file.filename;
-  } else {
-    imgPath = req.body.imagePath;
-  }
-  const updateContent = {
-    heading: req.body.heading,
-    description: req.body.description,
-    category: req.body.category,
-    price: +req.body.price,
-    imagePath: imgPath
-  };
-  Contents.updateOne({_id: req.params.id}, updateContent).then(value => {
-    console.log('updated successfully');
-    res.json({
-      message: 'done'
-    })
-  });
-}); // end of update method
+router.patch('/:id', checkAuth, multer({storage: storage}).single("image"), ControllerContents.updateContent); // end of update method
 
 // find one method for finding a single content
-router.get('/:id', (req, res, next) => {
-  Contents.findById(req.params.id).then(content => {
-    if (content) {
-      res.json(content);
-    } else {
-      res.status(404).json({
-        message: 'no content'
-      })
-    }
-  })
-});
+router.get('/:id', ControllerContents.singleContent);
 
-router.get('/single/:type', (req, res, next) => {
-  let pageSize = +req.query.pagesize;
-  let pageIndex = +req.query.pageindex;
-  let updatedDocuments;
-  const contentFind = Contents.find({category: req.params.type});
-  contentFind
-    .limit(pageSize).skip(pageSize * (pageIndex - 1));
-  contentFind.then((documents) => {
-    updatedDocuments = documents;
-    return Contents.count({category: req.params.type});
-  }).then(count => {
-    console.log(count);
-    res.json({
-      contents: updatedDocuments,
-      count: count
-    })
-  })
-});
+router.get('/single/:type', ControllerContents.categoryContent);
 
 module.exports = router;
