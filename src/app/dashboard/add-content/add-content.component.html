@@ -54,7 +54,10 @@
         </div>
         <p class = "success" *ngIf="message === 'created'">Content Added</p>
         <p class = "success" *ngIf="message === 'updated'">Content Updated</p>
-        <button type="submit" mat-raised-button color="primary">Submit</button>
+        <button *ngIf="!isLoding" type="submit" mat-raised-button color="primary">Submit</button>
+        <div class = "spinner" *ngIf="isLoding">
+          <mat-spinner [diameter]="40"></mat-spinner>
+        </div>
       </form>
     </div>
   </div>

@@ -21,5 +21,8 @@
                    [pageSize]="pageSize"
                    (page)="onPageChange($event)" *ngIf="contents.length > 0" ></mat-paginator>
   </div>
+  <div class = "spinner" *ngIf="isLoding">
+    <mat-spinner class = "m-auto" [diameter]="70"></mat-spinner>
+  </div>
 
 </div>

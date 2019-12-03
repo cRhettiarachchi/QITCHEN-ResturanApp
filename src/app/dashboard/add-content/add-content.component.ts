@@ -20,6 +20,7 @@ export class AddContentComponent implements OnInit {
   type = 'create';
   id: string;
   content: ContentModel = null;
+  isLoding = false;
 
   constructor(private contentService: ContentService, private router: ActivatedRoute, private snackBar: MatSnackBar) { }
 
@@ -64,6 +65,7 @@ export class AddContentComponent implements OnInit {
     if (!this.formValue.valid) { // check if form is valid ( part of front end validation )
       return;
     }
+    this.isLoding = true;
     if (this.type === 'create') {
       this.contentService.postvalues(
         this.formValue.value.heading,
@@ -71,11 +73,14 @@ export class AddContentComponent implements OnInit {
         this.formValue.value.category,
         this.formValue.value.price,
         this.formValue.value.image).subscribe(value => {
+          this.isLoding = false;
           if (value.message === 'done') {
             this.formValue.reset({category: 'Breakfast'});
             formDirective.resetForm({category: 'Breakfast'});
             this.imagePreview = null;
             this.openSnackBar('Content Created Successfully');
+          } else {
+            this.openSnackBar('Content creation failed');
           }
       });
     } else {
@@ -85,11 +90,14 @@ export class AddContentComponent implements OnInit {
         this.formValue.value.category,
         this.formValue.value.price,
         this.formValue.value.image).subscribe(value => {
+          this.isLoding = false;
           if (value.message === 'done') {
             this.formValue.reset({category: 'Breakfast'});
             formDirective.resetForm({category: 'Breakfast'});
             this.imagePreview = null;
             this.openSnackBar('Content updated Successfully');
+          } else {
+            this.openSnackBar('Content update failed');
           }
       });
     }

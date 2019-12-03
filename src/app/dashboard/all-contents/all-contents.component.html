@@ -2,7 +2,7 @@
   <div class="row">
     <h2 class="heading">All Contents</h2>
   </div>
-  <p *ngIf="allContents.length <= 0">No contents available</p>
+<!--  <p *ngIf="!isLoding || allContents.length <= 0">No contents available</p>-->
   <div class="row content-heading" *ngIf="allContents.length > 0">
     <div class="col-3">
       <h4>Title</h4>
@@ -30,5 +30,8 @@
    <mat-paginator [length]="total"
                   [pageSize]="pageSize"
                   (page)="onPageChange($event)"  *ngIf="allContents.length > 0"></mat-paginator>
+  <div class = "spinner" *ngIf="isLoding">
+    <mat-spinner class = "m-auto" [diameter]="70"></mat-spinner>
+  </div>
 </div>
 

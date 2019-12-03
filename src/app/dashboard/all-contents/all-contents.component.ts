@@ -15,13 +15,15 @@ export class AllContentsComponent implements OnInit {
   total = 2;
   pageIndex = 1;
   panelOpenState = false;
+  isLoding = false;
 
   constructor(private contentService: ContentService, private snackBar: MatSnackBar) { }
 
   ngOnInit() {
+    this.isLoding = true;
     this.contentService.getAllcontents(this.pageSize, this.pageIndex);
     this.contentService.contentAsObservable().subscribe((contentData) => {
-      console.log(this.allContents);
+      this.isLoding = false;
       this.allContents = contentData.contents;
       this.total = contentData.count;
     });
