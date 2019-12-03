@@ -11,7 +11,6 @@ export class ContentService {
   private contentSubject = new Subject<{contents: ContentModel[], count: number}>();
   private resultmessage: string;
 
-  // private getContentUrl = 'http://localhost:8080/contents';
   private getContentUrl = 'http://eqitchen-env.maegvyxc6d.us-east-2.elasticbeanstalk.com/contents';
 
 getAllcontents(pageSize: number, pageIndex: number) {
