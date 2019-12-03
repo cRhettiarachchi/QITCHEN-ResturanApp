@@ -44,6 +44,10 @@ exports.createContent = (req, res, next) => {
         imagePath: value.imagePath
       }
     });
+  }).catch(error => {
+    res.json({
+      message: 'failed'
+    })
   });
 };
 

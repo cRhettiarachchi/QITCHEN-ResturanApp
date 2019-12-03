@@ -11,7 +11,7 @@ import {PageEvent} from '@angular/material';
 export class LandingContentComponent implements OnInit {
   /*These are the all contents variables*/
   contents: ContentModel[] = [];
-  pageSize = 1;
+  pageSize = 6;
   total: number;
   pageIndex = 1;
 

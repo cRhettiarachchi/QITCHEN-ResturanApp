@@ -10,6 +10,7 @@ import {MatSnackBar} from '@angular/material';
   providedIn: 'root'
 })
 export class AuthService {
+  // private userUrl = 'http://eqitchen-env.maegvyxc6d.us-east-2.elasticbeanstalk.com/users/';
   private userUrl = 'http://localhost:8080/users/';
   private token: string;
   private message = new Subject<string>();
@@ -22,9 +23,7 @@ export class AuthService {
   constructor(private http: HttpClient, private router: Router, private snackBar: MatSnackBar) { }
   createUser(email: string, name: string, password: string) {
     const authData: AuthDataModel = ({email, name, password});
-    this.http.post(this.userUrl + 'sign-up', authData).subscribe(message => {
-      console.log(message);
-    });
+    return this.http.post<{message: string, data: UserModel}>(this.userUrl + 'sign-up', authData);
   }
   getToken() {
     return this.token;

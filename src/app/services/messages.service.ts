@@ -7,7 +7,8 @@ import {map} from 'rxjs/operators';
   providedIn: 'root'
 })
 export class MessagesService {
-  private messageUrl = 'http://localhost:8080/message';
+  // private messageUrl = 'http://localhost:8080/message';
+  private messageUrl = 'http://eqitchen-env.maegvyxc6d.us-east-2.elasticbeanstalk.com/message';
 
   constructor(private http: HttpClient) { }
   createMessage(email: string, name: string, message: string) {

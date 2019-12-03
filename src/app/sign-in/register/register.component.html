@@ -28,6 +28,9 @@
   <mat-error *ngIf="cPassword.valid && password.valid"><span *ngIf="cPassword.value !== password.value">
     Passwords Do not match
   </span></mat-error>
-  <button type = "submit" mat-raised-button color="primary">Login In</button>
-  <a class="register-link" routerLink="/user/sign-in">Already have an account </a>
+  <button *ngIf="!isLoding" type = "submit" mat-raised-button color="primary">Login In</button>
+  <a *ngIf="!isLoding" class="register-link" routerLink="/user/sign-in">Already have an account </a>
+  <div class = "spinner" *ngIf="isLoding">
+    <mat-spinner [diameter]="40"></mat-spinner>
+  </div>
 </form>

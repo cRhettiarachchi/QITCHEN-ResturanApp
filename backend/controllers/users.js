@@ -1,4 +1,4 @@
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 
@@ -10,7 +10,12 @@ exports.createUser = (req, res, next) => {
       name: req.body.name
     });
     user.save().then((result) => { // save the user as a new user
-      res.json(result);
+      res.json({
+        id: result._id,
+        name: result.name,
+        type: result.type,
+        email: result.email
+      });
     }).catch(result => { // catch to catch any errors ps: the errors are not handle properly in the front end
       res.json({
         message: 'failed',

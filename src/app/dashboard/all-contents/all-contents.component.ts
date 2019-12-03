@@ -11,7 +11,7 @@ import {HttpClient} from '@angular/common/http';
 })
 export class AllContentsComponent implements OnInit {
   allContents: ContentModel[] = [];
-  pageSize = 1;
+  pageSize = 6;
   total = 2;
   pageIndex = 1;
   panelOpenState = false;

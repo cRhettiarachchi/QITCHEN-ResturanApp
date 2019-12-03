@@ -29,7 +29,7 @@ import {
   MatButtonModule, MatCardModule, MatExpansionModule,
   MatFormFieldModule, MatIconModule,
   MatInputModule,
-  MatPaginatorModule,
+  MatPaginatorModule, MatProgressSpinnerModule,
   MatSelectModule,
   MatSidenavModule, MatSnackBarModule, MatToolbarModule
 } from '@angular/material';
@@ -82,6 +82,7 @@ import { RatingModule } from 'ngx-bootstrap/rating';
     MatIconModule,
     MatToolbarModule,
     MatSnackBarModule,
+    MatProgressSpinnerModule,
     RatingModule.forRoot()
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
