@@ -10,8 +10,8 @@ import {MatSnackBar} from '@angular/material';
   providedIn: 'root'
 })
 export class AuthService {
-  // private userUrl = 'http://eqitchen-env.maegvyxc6d.us-east-2.elasticbeanstalk.com/users/';
-  private userUrl = 'http://localhost:8080/users/';
+  private userUrl = 'http://eqitchen-env.maegvyxc6d.us-east-2.elasticbeanstalk.com/users/';
+  // private userUrl = 'http://localhost:8080/users/';
   private token: string;
   private message = new Subject<string>();
   private userSubject = new Subject<UserModel>();
